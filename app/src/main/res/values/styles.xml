@@ -5,4 +5,23 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="TextView.Title.Onboarding" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="android:textSize">@dimen/text_size_xxxnormal</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/color_onboarding_title</item>
+
+    </style>
+
+    <style name="TextView.Text.Onboarding" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="android:textSize">@dimen/text_size_xnormal</item>
+
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/color_onboarding_text</item>
+        <item name="android:layout_marginLeft">@dimen/margin_xxsmall</item>
+        <item name="android:layout_marginRight">@dimen/margin_xxsmall</item>
+
+    </style>
+
 </resources>

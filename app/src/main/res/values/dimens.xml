@@ -1,0 +1,58 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- General -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="padding_small">5dp</dimen>
+    <dimen name="padding_xsmall">8dp</dimen>
+    <dimen name="padding_xxsmall">10dp</dimen>
+    <dimen name="padding_xxxsmall">12dp</dimen>
+    <dimen name="text_size_xxxxsmall">12sp</dimen>
+    <dimen name="padding_normal">16dp</dimen>
+    <dimen name="padding_xnormal">18dp</dimen>
+    <dimen name="padding_xxnormal">20dp</dimen>
+    <dimen name="padding_xxxnormal">22dp</dimen>
+    <dimen name="padding_big">24dp</dimen>
+    <dimen name="padding_xbig">25dp</dimen>
+    <dimen name="padding_xxbig">28dp</dimen>
+    <dimen name="padding_xxxbig">30dp</dimen>
+
+    <dimen name="margin_small">5dp</dimen>
+    <dimen name="margin_xsmall">8dp</dimen>
+    <dimen name="margin_xxsmall">10dp</dimen>
+    <dimen name="margin_xxxsmall">12dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_xnormal">18dp</dimen>
+    <dimen name="margin_xxnormal">20dp</dimen>
+    <dimen name="margin_xxxnormal">22dp</dimen>
+    <dimen name="margin_big">24dp</dimen>
+    <dimen name="margin_xbig">25dp</dimen>
+    <dimen name="margin_xxbig">28dp</dimen>
+    <dimen name="margin_xxxbig">32dp</dimen>
+    <dimen name="height_top_header">138dp</dimen>
+
+
+
+    <!-- Font Size-->
+    <dimen name="text_size_menu_toolbar_transparent">7.5dp</dimen>
+    <dimen name="text_size_small">8sp</dimen>
+    <dimen name="text_size_xsmall">9sp</dimen>
+    <dimen name="text_size_xxsmall">10sp</dimen>
+    <dimen name="text_size_xxxsmall">11sp</dimen>
+    <dimen name="text_size_normal">14sp</dimen>
+    <dimen name="text_size_xnormal">15sp</dimen>
+    <dimen name="text_size_xxnormal">16sp</dimen>
+    <dimen name="text_size_xxxnormal">19sp</dimen>
+
+    <dimen name="text_size_big">21sp</dimen>
+    <dimen name="text_size_xbig">22sp</dimen>
+    <dimen name="text_size_xxbig">24sp</dimen>
+    <dimen name="text_size_xxxbig">36sp</dimen>
+    <dimen name="text_big_line_spacing">-10sp</dimen>
+    <dimen name="text_size_speakername">12sp</dimen>
+    <dimen name="text_button">15sp</dimen>
+    <dimen name="text_size_session_title">20sp</dimen>
+
+
+
+</resources>
