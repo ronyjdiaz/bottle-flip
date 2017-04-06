@@ -53,6 +53,9 @@
     <dimen name="text_button">15sp</dimen>
     <dimen name="text_size_session_title">20sp</dimen>
 
+    <!-- OnBoarding -->
+    
+
 
 
 </resources>

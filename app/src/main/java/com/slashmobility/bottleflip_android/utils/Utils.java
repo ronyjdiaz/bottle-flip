@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.SpannableString;
@@ -38,11 +40,22 @@ public class Utils {
         return dp * (context.getResources().getDisplayMetrics().density);
     }
 
+
     public static int pxToDp(int px, Context context){
 
         int pixel = Math.round(px * (context.getResources().getDisplayMetrics().density));
         Log.e("pxtodp"+px, pixel + "");
         return pixel;
+    }
+
+    public static void changeColorDrawable(View v, Context context, int color){
+        GradientDrawable gd = (GradientDrawable) v.getBackground().mutate();
+        gd.setColor(ContextCompat.getColor(context, color));
+    }
+
+    public static void changeStrokeColorDrawable(View v, Context context, int stroke, int color){
+        GradientDrawable gd = (GradientDrawable) v.getBackground().mutate();
+        gd.setStroke(stroke, ContextCompat.getColor(context, color));
     }
 
     public static boolean isPair(int numero) {

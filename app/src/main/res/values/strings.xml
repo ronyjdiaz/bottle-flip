@@ -3,6 +3,8 @@
     <string name="facebook_app_id">1864063427173250</string>
 
     <!---Onboarding-->
+    <string name="text_skip">SALTAR</string>
+    <string name="text_next">SIGUIENTE</string>
     <string name="text_onboarding_title1">¡TE RETO AL BOTTLE FLIP!</string>
     <string name="text_onboarding_text1">Flipea y conviértete en el Número 1 lanzando tu botella: sube tus videos, añádeles stickers y ¡gana puntos!</string>
     <string name="text_onboarding_title2">¡COMPITE POR EL PRIMER PUESTO!</string>

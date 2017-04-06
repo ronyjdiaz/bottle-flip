@@ -42,11 +42,13 @@
             android:name=".activities.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".activities.IntroActivity"
+
+        <activity android:name=".activities.OnboardingActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".activities.WellcomeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            ></activity>
+
+        <activity android:name=".activities.WelcomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
