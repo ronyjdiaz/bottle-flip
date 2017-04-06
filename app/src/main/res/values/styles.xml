@@ -24,4 +24,16 @@
 
     </style>
 
+    <style name="EditText.White" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="android:textSize">@dimen/text_size_xnormal</item>
+        <item name="android:background">@drawable/edittext_shape_transparentbackground_whiteline</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingLeft">@dimen/margin_xxbig</item>
+        <item name="android:paddingRight">@dimen/margin_xxsmall</item>
+        <item name="android:textColorHint">@color/white</item>
+
+    </style>
+
+
 </resources>

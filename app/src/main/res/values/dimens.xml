@@ -41,7 +41,7 @@
     <dimen name="text_size_xxxsmall">11sp</dimen>
     <dimen name="text_size_normal">14sp</dimen>
     <dimen name="text_size_xnormal">15sp</dimen>
-    <dimen name="text_size_xxnormal">16sp</dimen>
+    <dimen name="text_size_xxnormal">17sp</dimen>
     <dimen name="text_size_xxxnormal">19sp</dimen>
 
     <dimen name="text_size_big">21sp</dimen>

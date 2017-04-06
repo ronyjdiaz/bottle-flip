@@ -38,6 +38,8 @@ public class IntroActivity extends AppIntro {
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
         // Do something when users tap on Skip button.
+        Intent main = new Intent(this, WellcomeActivity.class);
+        startActivity(main);
         finish();
     }
 
@@ -46,7 +48,7 @@ public class IntroActivity extends AppIntro {
         super.onDonePressed(currentFragment);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         preferences.edit().putBoolean("onboarding_complete", true).apply();
-        Intent main = new Intent(this, LoginActivity.class);
+        Intent main = new Intent(this, WellcomeActivity.class);
         startActivity(main);
         finish();
 

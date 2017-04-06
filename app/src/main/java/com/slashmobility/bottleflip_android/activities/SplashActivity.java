@@ -11,7 +11,7 @@ import com.slashmobility.bottleflip_android.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends BaseActivity {
     // Set the duration of the splash screen
 
 
@@ -29,10 +29,8 @@ public class SplashActivity extends Activity {
             public void run() {
 
                 // Start the next activity
-                Intent mainIntent = new Intent().setClass(
-                        SplashActivity.this, IntroActivity.class);
-                startActivity(mainIntent);
 
+                openActivity(IntroActivity.class);
                 // Close the activity so the user won't able to go back this
                 // activity pressing Back button
                 finish();

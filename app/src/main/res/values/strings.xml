@@ -10,7 +10,14 @@
     <string name="text_onboarding_title3">¡TUS VIDEOS EN YOUTUBE!</string>
     <string name="text_onboarding_text3">Descubre el Canal Bottle Flip Challenge en Youtube, mira como tus amigos hacen maravillas con sus botellas… ¡Consigue con tu botella un gran Challenge y compártelo!</string>
 
+    <!---Wellcome-->
+    <string name="login">INICIAR SESIÓN</string>
+    <string name="register">REGISTRARSE</string>
 
+    <!---Login-->
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
 
 
 </resources>

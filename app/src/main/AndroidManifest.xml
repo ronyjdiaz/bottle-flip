@@ -42,9 +42,17 @@
             android:name=".activities.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".activities.IntroActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        <activity
+            android:name=".activities.IntroActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activities.WellcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
+        <activity android:name=".activities.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             ></activity>
     </application>
 
