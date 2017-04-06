@@ -21,5 +21,11 @@
     <string name="password">Contraseña</string>
     <string name="forgot_password">¿Olvidaste tu contraseña?</string>
 
+    <!-- Register -->
+    <string name="buttle_code">Código botella</string>
+    <string name="btn_continua">CONTINUAR</string>
+    <string name="text_title_register">COMPLETA TU CUENTA</string>
+    <string name="text_register_subtitle">Introduce el código que tienes en tu set de stickers:</string>
+    <string name="text_uncode">Continuar sin código</string>
 
 </resources>

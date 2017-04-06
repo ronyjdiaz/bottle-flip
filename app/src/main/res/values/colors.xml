@@ -8,6 +8,8 @@
     <color name="color_onboarding_text">#424242</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="blue">#26a1ce</color>
+    <color name="dark_blue">#14577f</color>
     <color name="orange">#f95e5b</color>
     <color name="light_black">#292929</color>
 
