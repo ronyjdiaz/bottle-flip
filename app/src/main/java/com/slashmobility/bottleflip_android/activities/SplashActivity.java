@@ -30,7 +30,7 @@ public class SplashActivity extends BaseActivity {
 
                 // Start the next activity
 
-                openActivity(IntroActivity.class);
+                openActivity(OnboardingActivity.class);
                 // Close the activity so the user won't able to go back this
                 // activity pressing Back button
                 finish();

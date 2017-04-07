@@ -7,11 +7,33 @@
     <color name="color_onboarding_title">#606060</color>
     <color name="color_onboarding_text">#424242</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="blue">#26a1ce</color>
+    <color name="dark_blue">#14577f</color>
     <color name="orange">#f95e5b</color>
     <color name="light_black">#292929</color>
     <color name="blue_facebook">#415798</color>
     <color name="light_blue">#26a1ce</color>
 
 
+    <color name="dot_light_screen1">#52b3a8</color>
+    <color name="dot_light_screen2">#fa6659</color>
+    <color name="dot_light_screen3">#f7ae00</color>
+
+    <color name="dot_dark_screen1">#6652b3a8</color>
+    <color name="dot_dark_screen2">#66fa6659</color>
+    <color name="dot_dark_screen3">#66f7ae00</color>
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+    </array>
 
 </resources>

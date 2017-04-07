@@ -6,6 +6,8 @@
     <string name="connection_error">Error en la conexión</string>
 
     <!---Onboarding-->
+    <string name="text_skip">SALTAR</string>
+    <string name="text_next">SIGUIENTE</string>
     <string name="text_onboarding_title1">¡TE RETO AL BOTTLE FLIP!</string>
     <string name="text_onboarding_text1">Flipea y conviértete en el Número 1 lanzando tu botella: sube tus videos, añádeles stickers y ¡gana puntos!</string>
     <string name="text_onboarding_title2">¡COMPITE POR EL PRIMER PUESTO!</string>
@@ -45,5 +47,11 @@
     <string name="email">E-mail</string>
 
 
+    <!-- Register -->
+    <string name="buttle_code">Código botella</string>
+    <string name="btn_continua">CONTINUAR</string>
+    <string name="text_title_register">COMPLETA TU CUENTA</string>
+    <string name="text_register_subtitle">Introduce el código que tienes en tu set de stickers:</string>
+    <string name="text_uncode">Continuar sin código</string>
 
 </resources>
