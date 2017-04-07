@@ -45,6 +45,6 @@ public class RegisterActivity extends BaseActivity {
 
     private void configViews(){
         changeColorBarNotification(R.color.dark_blue);
-        Utils.changeColorDrawable(btn_continue, RegisterActivity.this, R.color.white);
+       // Utils.changeColorDrawable(btn_continue, RegisterActivity.this, R.color.white);
     }
 }

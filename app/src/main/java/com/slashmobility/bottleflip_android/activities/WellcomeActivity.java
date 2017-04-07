@@ -10,7 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class WelcomeActivity extends BaseActivity {
+public class WellcomeActivity extends BaseActivity {
 
 
     @BindView(R.id.btnFacebookLogin)Button btnLogin;
@@ -26,10 +26,10 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     private void initView(){
-        Utils.changeColorDrawable(btnLogin, WelcomeActivity.this, R.color.white);
-        Utils.changeStrokeColorDrawable(btnLogin, WelcomeActivity.this, 3, R.color.black);
+        Utils.changeColorDrawable(btnLogin, WellcomeActivity.this, R.color.white);
+        Utils.changeStrokeColorDrawable(btnLogin, WellcomeActivity.this, 3, R.color.black);
 
-        Utils.changeColorDrawable(btnRegister, WelcomeActivity.this, R.color.black);
+        Utils.changeColorDrawable(btnRegister, WellcomeActivity.this, R.color.black);
     }
 
     @OnClick(R.id.btnFacebookLogin)
