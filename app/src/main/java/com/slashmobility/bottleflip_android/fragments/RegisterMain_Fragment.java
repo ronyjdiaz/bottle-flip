@@ -1,0 +1,80 @@
+package com.slashmobility.bottleflip_android.fragments;
+
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.slashmobility.bottleflip_android.R;
+import com.slashmobility.bottleflip_android.activities.RegisterActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+
+public class RegisterMain_Fragment extends BaseFragment {
+
+    @BindView(R.id.btnContinue)Button mbtnContinue;
+    @BindView(R.id.edittextBottleCode)EditText medittextBottleCode;
+    @BindView(R.id.textviewContinue)TextView mtextviewContinue;
+
+    public RegisterMain_Fragment() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_register_main, container, false);
+        ButterKnife.bind(this,v);
+
+        return v;
+    }
+
+    @OnClick(R.id.textviewContinue)
+    protected void continue_no_code(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(R.string.alert_conitnue_no_code)
+                .setTitle(R.string.continue_without_code);
+
+        builder.setPositiveButton(R.string.continue_without_code, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                nextFragment();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+
+    }
+
+    @OnClick(R.id.btnContinue)
+    protected void continueCode(){
+        nextFragment();
+    }
+
+    private void nextFragment(){
+        getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container,new RegisterOptionsFragment());
+        fragmentTransaction.commit();
+    }
+
+}

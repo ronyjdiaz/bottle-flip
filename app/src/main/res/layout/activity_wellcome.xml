@@ -13,7 +13,7 @@
         android:src="@drawable/img_welcome_bottle_01"
         android:layout_marginRight="150dp"
         app:layout_constraintRight_toRightOf="@+id/imageView9"
-        app:layout_constraintBottom_toBottomOf="@+id/btnLogin"
+        app:layout_constraintBottom_toBottomOf="@+id/btnFacebookLogin"
         android:layout_marginBottom="24dp"
         android:layout_marginEnd="150dp" />
 
@@ -32,7 +32,7 @@
         android:layout_marginEnd="8dp" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnFacebookLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -62,9 +62,9 @@
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_xxnormal"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/btnLogin"
-        app:layout_constraintRight_toRightOf="@+id/btnLogin"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintLeft_toLeftOf="@+id/btnFacebookLogin"
+        app:layout_constraintRight_toRightOf="@+id/btnFacebookLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnFacebookLogin" />
 
     <ImageView
         android:id="@+id/imageView10"

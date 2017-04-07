@@ -1,6 +1,5 @@
 package com.slashmobility.bottleflip_android.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -13,7 +12,7 @@ import butterknife.OnClick;
 public class WellcomeActivity extends BaseActivity {
 
 
-    @BindView(R.id.btnLogin)Button btnLogin;
+    @BindView(R.id.btnFacebookLogin)Button btnLogin;
     @BindView(R.id.btnRegister)Button btnRegister;
 
 
@@ -24,7 +23,7 @@ public class WellcomeActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.btnLogin)
+    @OnClick(R.id.btnFacebookLogin)
     protected void gotoLogin(){
         openActivity(LoginActivity.class);
 

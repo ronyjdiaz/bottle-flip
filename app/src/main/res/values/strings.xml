@@ -2,6 +2,9 @@
     <string name="app_name">Bottleflip-android</string>
     <string name="facebook_app_id">1864063427173250</string>
 
+    <!---Errors-->
+    <string name="connection_error">Error en la conexión</string>
+
     <!---Onboarding-->
     <string name="text_onboarding_title1">¡TE RETO AL BOTTLE FLIP!</string>
     <string name="text_onboarding_text1">Flipea y conviértete en el Número 1 lanzando tu botella: sube tus videos, añádeles stickers y ¡gana puntos!</string>
@@ -18,6 +21,29 @@
     <string name="user">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="facebook_login">Seguir con Facebook</string>
+    <string name="current_pass_required">Current password is required</string>
+    <string name="new_pass_required">New password is required</string>
+    <string name="password_not_macth">Password does not match</string>
+    <string name="password_updated">Password updated successfully</string>
+    <string name="bad_credentials">Correo electrónico o contraseña inválida</string>
+    <string name="invalid_email">Correo electrónico inválido</string>
+    <string name="pass_required">Contraseña es requerida</string>
+
+    <!---Register-->
+    <string name="complete_your_account">COMPLETA TU CUENTA</string>
+    <string name="include_code">Introduce el código que tienes en tu set de stickers:</string>
+    <string name="bottle_code">Código botella</string>
+    <string name="text_continue">CONTINUAR</string>
+    <string name="continue_without_code">Continuar <strong>sin código</strong> </string>
+    <string name="alert_conitnue_no_code">Puedes seguir navegando por nuestra app sin activar todavía el código. Esta opción no desbloquea todas las funcionalidades de la aplicación.</string>
+    <string name="cancel">Cancelar</string>
+    <string name="accept">Aceptar</string>
+    <string name="register_with_mail">Registro con mail</string>
+    <string name="register_with_facebook">Registro con Facebook</string>
+    <string name="terms_and_conditions">A partir de tu registro, aceptas la Política de Privacidad y los Términos y Condiciones.</string>
+    <string name="email">E-mail</string>
+
 
 
 </resources>
