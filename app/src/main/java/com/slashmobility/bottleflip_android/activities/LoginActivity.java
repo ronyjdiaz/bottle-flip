@@ -49,6 +49,7 @@ public class LoginActivity extends BaseActivity {
 
     private void configViews(){
         Utils.changeColorDrawable(mbtnLogin, LoginActivity.this, R.color.white);
+        changeColorBarNotification(R.color.light_orange);
     }
 
     private void initListeners(){
