@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bottleflip-android</string>
+    <string name="app_name">Bottleflip</string>
     <string name="facebook_app_id">1864063427173250</string>
 
     <!---Errors-->
@@ -15,7 +15,7 @@
     <string name="text_onboarding_title3">¡TUS VIDEOS EN YOUTUBE!</string>
     <string name="text_onboarding_text3">Descubre el Canal Bottle Flip Challenge en Youtube, mira como tus amigos hacen maravillas con sus botellas… ¡Consigue con tu botella un gran Challenge y compártelo!</string>
 
-    <!---Wellcome-->
+    <!---Welcome-->
     <string name="login">INICIAR SESIÓN</string>
     <string name="register">REGISTRARSE</string>
 

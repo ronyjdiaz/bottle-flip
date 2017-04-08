@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.slashmobility.bottleflip_android.R;
+import com.slashmobility.bottleflip_android.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +33,7 @@ public class RegisterOptionsFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_register_options, container, false);
         ButterKnife.bind(this,v);
+        Utils.changeColorDrawable(mbtnRegisterMail, this.getContext(), R.color.white);
 
         return v;
     }

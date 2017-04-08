@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.activities.RegisterActivity;
+import com.slashmobility.bottleflip_android.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +39,7 @@ public class RegisterMain_Fragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_register_main, container, false);
         ButterKnife.bind(this,v);
-
+        Utils.changeColorDrawable(mbtnContinue, this.getContext(), R.color.white);
         return v;
     }
 

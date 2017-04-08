@@ -43,11 +43,11 @@ public class OnboardingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         prefManager = new PreferenceManager(this);
-/*        if (!prefManager.isFirstTimeLaunch()) {
+        if (!prefManager.isFirstTimeLaunch()) {
             gotoWelcome();
             finish();
         }
-*/
+
         setContentView(R.layout.activity_onboarding);
         ButterKnife.bind(this);
         getViews();
@@ -67,7 +67,8 @@ public class OnboardingActivity extends BaseActivity {
     @OnClick(R.id.btn_skip)
     protected void gotoWelcome(){
         prefManager.setFirstTimeLaunch(false);
-        openActivity(WellcomeActivity.class);
+        openActivity(WelcomeActivity.class);
+        finish();
     }
 
     @OnClick(R.id.btn_next)
@@ -79,6 +80,7 @@ public class OnboardingActivity extends BaseActivity {
             viewPager.setCurrentItem(current);
         } else {
             gotoWelcome();
+            finish();
         }
     }
 

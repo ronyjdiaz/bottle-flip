@@ -41,9 +41,14 @@ public class LoginActivity extends BaseActivity {
 
         fbLoginManager = com.facebook.login.LoginManager.getInstance();
         callbackManager = CallbackManager.Factory.create();
+        configViews();
         initListeners();
 
 
+    }
+
+    private void configViews(){
+        Utils.changeColorDrawable(mbtnLogin, LoginActivity.this, R.color.white);
     }
 
     private void initListeners(){
