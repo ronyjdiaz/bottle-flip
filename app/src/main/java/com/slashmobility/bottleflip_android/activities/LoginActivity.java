@@ -65,7 +65,6 @@ public class LoginActivity extends BaseActivity {
             public void onCancel() {
 
             }
-
             @Override
             public void onError(FacebookException error) {
                 String mErrorMessage = getString(R.string.connection_error);
