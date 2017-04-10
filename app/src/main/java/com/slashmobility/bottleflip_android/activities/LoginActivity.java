@@ -87,7 +87,7 @@ public class LoginActivity extends BaseActivity {
             Utils.hideSoftKeyboard(LoginActivity.this);
             String mEmail = medittextUsername.getText().toString();
             String mPassword = medittextPassword.getText().toString();
-            openActivity(ChallengesActivity.class);
+            openActivity(RetoActivity.class);
         }
     }
 

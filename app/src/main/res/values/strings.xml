@@ -54,4 +54,17 @@
     <string name="text_register_subtitle">Introduce el código que tienes en tu set de stickers:</string>
     <string name="text_uncode">Continuar sin código</string>
 
+    <!--Retos -->
+    <string name="title_reto">Retos</string>
+    <string name="title_ranking">Ranking</string>
+    <string name="title_perfil">Perfil</string>
+
+    <!-- Perfil -->
+    <string name="text_comparte_app">Comparte la app</string>
+    <string name="text_help">Ayuda</string>
+    <string name="text_vincular">Vincular botella</string>
+    <string name="text_terminos">Términos y condiciones</string>
+    <string name="text_politica">Política de privacidad</string>
+    <string name="text_cerrar_sesion">Cerrar sesión</string>
+
 </resources>

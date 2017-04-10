@@ -18,9 +18,9 @@ public class OnboardingAdapter extends PagerAdapter {
     private Context mContext;
 
     private static final int[] layouts = {
-        R.layout.slide_onboarding1,
-        R.layout.slide_onboarding2,
-        R.layout.slide_onboarding3
+            R.layout.slide_onboarding1,
+            R.layout.slide_onboarding2,
+            R.layout.slide_onboarding3
     };
 
     public OnboardingAdapter(Context context) {

@@ -5,6 +5,12 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:titleTextColor">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_size_toolbar_title</item>
+    </style>
+
     <style name="TextView.Title.Onboarding" parent="Theme.AppCompat.Light.DarkActionBar">
 
         <item name="android:textSize">@dimen/text_size_xxxnormal</item>
@@ -33,6 +39,12 @@
         <item name="android:paddingRight">@dimen/margin_xxsmall</item>
         <item name="android:textColorHint">@color/white</item>
 
+    </style>
+
+    <style name="CustomActionBar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <!-- Support library compatibility -->
+        <item name="windowActionBarOverlay">true</item>
     </style>
 
 

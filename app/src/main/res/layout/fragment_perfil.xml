@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/border_perfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/text_size_big"
+                android:layout_marginBottom="@dimen/text_size_big"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/ic_compartir"
+                    android:layout_marginLeft="@dimen/text_size_xbig"
+                    android:layout_marginRight="@dimen/text_size_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_xnormal2"
+                    android:text="@string/text_comparte_app"
+                    android:layout_marginTop="@dimen/text_size_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/border_perfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/text_size_big"
+                android:layout_marginBottom="@dimen/text_size_big"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/ic_ayuda"
+                    android:layout_marginLeft="@dimen/text_size_xbig"
+                    android:layout_marginRight="@dimen/text_size_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_xnormal2"
+                    android:text="@string/text_help"
+                    android:layout_marginTop="@dimen/text_size_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/border_perfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/text_size_big"
+                android:layout_marginBottom="@dimen/text_size_big"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/ic_vincular"
+                    android:layout_marginLeft="@dimen/text_size_xbig"
+                    android:layout_marginRight="@dimen/text_size_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="@string/text_vincular"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_xnormal2"
+                    android:layout_marginTop="@dimen/text_size_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/border_perfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/text_size_big"
+                android:layout_marginBottom="@dimen/text_size_big"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="@string/text_terminos"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_xnormal2"
+                    android:layout_marginLeft="@dimen/text_size_xxxbig"
+                    android:layout_marginTop="@dimen/text_size_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/border_perfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/text_size_big"
+                android:layout_marginBottom="@dimen/text_size_big"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="@string/text_politica"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_xnormal2"
+                    android:layout_marginLeft="@dimen/text_size_xxxbig"
+                    android:layout_marginTop="@dimen/text_size_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/border_perfil"
+            android:layout_width="match_parent"
+            android:layout_height="5dp">
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/color_bar_perfil"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/text_size_big"
+            android:layout_marginBottom="@dimen/text_size_big"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/ic_logout"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/text_size_xbig"
+                android:layout_marginRight="@dimen/text_size_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="@string/text_cerrar_sesion"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_xnormal2"
+                android:layout_marginTop="@dimen/text_size_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

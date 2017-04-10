@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_green"
+    tools:context="com.slashmobility.bottleflip_android.activities.RetoActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/coordinator"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_below="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </FrameLayout>
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_default">
+        </include>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:weightSum="3">
+
+        <ImageButton
+            android:id="@+id/btn_reto"
+            android:background="@drawable/button_menu"
+            android:src="@drawable/ic_retos_active"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="6dp"/>
+
+        <ImageButton
+            android:id="@+id/btn_ranking"
+            android:background="@drawable/button_menu"
+            android:src="@drawable/ic_ranking_default"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="6dp"/>
+
+        <ImageButton
+            android:id="@+id/btn_perfil"
+            android:background="@drawable/button_menu"
+            android:src="@drawable/ic_otros_default"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="6dp"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
