@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Bottleflip</string>
-    <string name="facebook_app_id">1864063427173250</string>
+    <string name="facebook_app_id">250172005391023</string>
+    <string name="facebook_app_id2">1864063427173250</string>
+
 
     <!---Errors-->
     <string name="connection_error">Error en la conexión</string>
@@ -31,6 +33,7 @@
     <string name="bad_credentials">Correo electrónico o contraseña inválida</string>
     <string name="invalid_email">Correo electrónico inválido</string>
     <string name="pass_required">Contraseña es requerida</string>
+    <string name="username_required">El nombre de usuario es requerido</string>
 
     <!---Register-->
     <string name="complete_your_account">COMPLETA TU CUENTA</string>
@@ -45,6 +48,7 @@
     <string name="register_with_facebook">Registro con Facebook</string>
     <string name="terms_and_conditions">A partir de tu registro, aceptas la Política de Privacidad y los Términos y Condiciones.</string>
     <string name="email">E-mail</string>
+    <string name="bottle_code_required">El código de la botella es requerido</string>
 
 
     <!-- Register -->

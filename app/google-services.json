@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "688938767319",
+    "firebase_url": "https://labotella-c6c17.firebaseio.com",
+    "project_id": "labotella-c6c17",
+    "storage_bucket": "labotella-c6c17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688938767319:android:6443d9f074a30b2e",
+        "android_client_info": {
+          "package_name": "com.slashmobility.bottleflip_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688938767319-fsdebakjqs109des6u6986a0llru28ru.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.slashmobility.bottleflip_android",
+            "certificate_hash": "efb7705e9742ffa6fae3731adc8ee66b73263059"
+          }
+        },
+        {
+          "client_id": "688938767319-s73a5vgs22httpflhi6lbpu9ss6jd931.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIYrswKQ1NN8MyaBqAwjBVk6UJpfjMaAY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688938767319-s73a5vgs22httpflhi6lbpu9ss6jd931.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "688938767319-ou9jmdpgh6i1prjasi99bk43nk49eboe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.labotella.ios"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

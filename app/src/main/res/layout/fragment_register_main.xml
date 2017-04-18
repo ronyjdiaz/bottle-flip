@@ -72,6 +72,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginTop="32dp"
+        android:maxLength="30"
         android:background="@drawable/edittext_shape_transparentbackground_whiteline"
         android:ems="10"
         android:hint="@string/bottle_code"
