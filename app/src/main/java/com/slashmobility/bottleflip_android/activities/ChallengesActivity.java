@@ -1,15 +1,89 @@
 package com.slashmobility.bottleflip_android.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 import com.slashmobility.bottleflip_android.R;
+import com.slashmobility.bottleflip_android.fragments.ChallengesFragment;
+import com.slashmobility.bottleflip_android.fragments.PerfilFragment;
+import com.slashmobility.bottleflip_android.fragments.RankingFragment;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ChallengesActivity extends BaseActivity {
+
+    @BindView(R.id.toolbar) Toolbar default_toolbar;
+    @BindView(R.id.btn_reto) ImageButton btn_reto;
+    @BindView(R.id.btn_ranking) ImageButton btn_ranking;
+    @BindView(R.id.btn_perfil) ImageButton btn_perfil;
+    @BindView(R.id.content_view) RelativeLayout content_view;
+    final static String TAG_1 = "RETO";
+    final static String TAG_2 = "RANKING";
+    final static String TAG_3 = "PERFIL";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_challenges);
+        setContentView(R.layout.activity_reto);
+        ButterKnife.bind(this);
+        getViews();
+    }
+
+    private void getViews(){
+        default_toolbar.setTitle(getResources().getString(R.string.title_reto));
+        setSupportActionBar(default_toolbar);
+        changeToFragment( new ChallengesFragment() );
+    }
+
+    @OnClick(R.id.btn_reto)
+    public void gotoReto(){
+        default_toolbar.setTitle(getResources().getString(R.string.title_reto));
+        active_btn(TAG_1);
+        changeToFragment( new ChallengesFragment() );
+    }
+
+    @OnClick(R.id.btn_ranking)
+    public void gotoRanking(){
+        default_toolbar.setTitle(getResources().getString(R.string.title_ranking));
+        active_btn(TAG_2);
+        changeToFragment( new RankingFragment() );
+    }
+
+    @OnClick(R.id.btn_perfil)
+    public void gotoPerfil(){
+        default_toolbar.setTitle(getResources().getString(R.string.title_perfil));
+        active_btn(TAG_3);
+        changeToFragment( new PerfilFragment() );
+
+    }
+
+    private void active_btn(String tag){
+        switch (tag){
+            case TAG_1:
+                content_view.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_green));
+                btn_reto.setImageResource(R.drawable.ic_retos_active);
+                btn_ranking.setImageResource(R.drawable.ic_ranking_default);
+                btn_perfil.setImageResource(R.drawable.ic_otros_default);
+                break;
+            case TAG_2:
+                content_view.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_red));
+                btn_ranking.setImageResource(R.drawable.ic_ranking_active);
+                btn_reto.setImageResource(R.drawable.ic_retos_default);
+                btn_perfil.setImageResource(R.drawable.ic_otros_default);
+                break;
+            case TAG_3:
+                content_view.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_yellow));
+                btn_reto.setImageResource(R.drawable.ic_retos_default);
+                btn_ranking.setImageResource(R.drawable.ic_ranking_default);
+                btn_perfil.setImageResource(R.drawable.ic_otros_active);
+                break;
+
+        }
     }
 }

@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.slashmobility.bottleflip_android.R;
-import com.slashmobility.bottleflip_android.adapters.RetoAdapter;
+import com.slashmobility.bottleflip_android.adapters.ChallengeAdapter;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,14 +19,14 @@ import butterknife.ButterKnife;
  * Created by Edgar-W10 on 8/4/2017.
  */
 
-public class RetoFragment extends BaseFragment {
+public class ChallengesFragment extends BaseFragment {
 
     @BindView(R.id.rv_retos) RecyclerView rv_retos;
-    private RetoAdapter mAdapter;
+    private ChallengeAdapter mAdapter;
     private View mView;
     private LinearLayoutManager mLinearLayoutManager;
 
-    public RetoFragment() {}
+    public ChallengesFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,8 +39,27 @@ public class RetoFragment extends BaseFragment {
 
     private void getViews(){
         mLinearLayoutManager = new LinearLayoutManager(getContext());
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
         rv_retos.setLayoutManager(mLinearLayoutManager);
-        mAdapter = new RetoAdapter();
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+        list.add("");
+
+
+
+
+        mAdapter = new ChallengeAdapter(getActivity(),list);
         rv_retos.setAdapter(mAdapter);
     }
 }

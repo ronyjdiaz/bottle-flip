@@ -3,7 +3,9 @@ package com.slashmobility.bottleflip_android.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +19,6 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -63,6 +64,8 @@ public class LoginActivity extends BaseActivity {
         initListeners();
 
 
+
+
     }
 
     @Override
@@ -75,6 +78,18 @@ public class LoginActivity extends BaseActivity {
     private void configViews(){
         Utils.changeColorDrawable(mbtnLogin, LoginActivity.this, R.color.white);
         changeColorBarNotification(R.color.light_orange);
+        enableButtonLogin(false);
+
+    }
+
+    private void enableButtonLogin(boolean enabled)
+    {
+        mbtnLogin.setEnabled(enabled);
+        if(enabled)
+            mbtnLogin.getBackground().setAlpha(255);
+        else
+            mbtnLogin.getBackground().setAlpha(128);
+
     }
 
     private void initListeners(){
@@ -115,6 +130,32 @@ public class LoginActivity extends BaseActivity {
 
             }
         });
+
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(isValidateLogin(false)){
+                    enableButtonLogin(true);
+                }
+                else
+                    enableButtonLogin(false);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+
+
+
+        medittextPassword.addTextChangedListener(textWatcher);
+        medittextUsername.addTextChangedListener(textWatcher);
     }
 
     @OnClick(R.id.btnFacebookLogin)
@@ -124,24 +165,31 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.btnLogin)
     protected void loginClick(){
-        if(isValidateLogin()) {
+        if(isValidateLogin(true)) {
             Utils.hideSoftKeyboard(LoginActivity.this);
             String mEmail = medittextUsername.getText().toString();
             String mPassword = medittextPassword.getText().toString();
-            openActivity(RetoActivity.class);
+            openActivity(ChallengesActivity.class);
         }
     }
 
+    @OnClick(R.id.textviewForgotPassword)
+    protected void forgotPassword(){
+        openActivity(RecoverPasswordActivity.class);
+    }
+
     //edittextUsername, edittextPassword
-    private boolean isValidateLogin(){
-        if(!Utils.validEmail(medittextUsername.getText().toString()))
+    private boolean isValidateLogin(boolean showAlert){
+        if(TextUtils.isEmpty(medittextUsername.getText().toString()))
         {
-            showMessageDialog(getResources().getString(R.string.invalid_email));
+            if(showAlert)
+                showMessageDialog(getResources().getString(R.string.username_required));
             return false;
         }
         if(TextUtils.isEmpty(medittextPassword.getText().toString()))
         {
-            showMessageDialog(getResources().getString(R.string.pass_required));
+            if(showAlert)
+                showMessageDialog(getResources().getString(R.string.pass_required));
             return false;
         }
 
@@ -167,10 +215,15 @@ public class LoginActivity extends BaseActivity {
                             return;
                         }
                         finish();
-                        openActivity(RetoActivity.class);
+                        openActivity(ChallengesActivity.class);
 
                         // ...
                     }
                 });
     }
+
+
+
+
+
 }

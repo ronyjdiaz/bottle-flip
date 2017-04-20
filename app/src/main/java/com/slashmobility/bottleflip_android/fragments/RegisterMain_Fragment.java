@@ -4,19 +4,16 @@ package com.slashmobility.bottleflip_android.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.slashmobility.bottleflip_android.R;
-import com.slashmobility.bottleflip_android.activities.RegisterActivity;
 import com.slashmobility.bottleflip_android.utils.Utils;
 
 import butterknife.BindView;
@@ -39,7 +36,9 @@ public class RegisterMain_Fragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_register_main, container, false);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         ButterKnife.bind(this,v);
+
         Utils.changeColorDrawable(mbtnContinue, this.getContext(), R.color.white);
         return v;
     }
@@ -52,7 +51,7 @@ public class RegisterMain_Fragment extends BaseFragment {
 
         builder.setPositiveButton(R.string.continue_without_code, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                nextFragment();
+                changeToFragment(new RegisterOptionsFragment());
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -76,16 +75,9 @@ public class RegisterMain_Fragment extends BaseFragment {
         }
         else
         {
-            nextFragment();
+          changeToFragment(new RegisterOptionsFragment());
         }
 
-    }
-
-    private void nextFragment(){
-        getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container,new RegisterOptionsFragment());
-        fragmentTransaction.commit();
     }
 
 }

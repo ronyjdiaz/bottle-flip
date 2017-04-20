@@ -34,6 +34,7 @@
     <string name="invalid_email">Correo electrónico inválido</string>
     <string name="pass_required">Contraseña es requerida</string>
     <string name="username_required">El nombre de usuario es requerido</string>
+    <string name="recover_password">RECUPERAR CONTRASEÑA</string>
 
     <!---Register-->
     <string name="complete_your_account">COMPLETA TU CUENTA</string>
@@ -62,6 +63,7 @@
     <string name="title_reto">Retos</string>
     <string name="title_ranking">Ranking</string>
     <string name="title_perfil">Perfil</string>
+    <string name="challenge">Reto</string>
 
     <!-- Perfil -->
     <string name="text_comparte_app">Comparte la app</string>

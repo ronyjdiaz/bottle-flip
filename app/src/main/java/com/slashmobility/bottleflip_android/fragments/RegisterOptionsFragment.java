@@ -2,10 +2,10 @@ package com.slashmobility.bottleflip_android.fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.slashmobility.bottleflip_android.R;
@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class RegisterOptionsFragment extends Fragment {
+public class RegisterOptionsFragment extends BaseFragment {
 
     @BindView(R.id.btnRegisterMail)Button mbtnRegisterMail;
     @BindView(R.id.btnRegisterFacebook)Button mbtnRegisterFacebook;
@@ -32,6 +32,7 @@ public class RegisterOptionsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_register_options, container, false);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         ButterKnife.bind(this,v);
         Utils.changeColorDrawable(mbtnRegisterMail, this.getContext(), R.color.white);
 
@@ -40,13 +41,13 @@ public class RegisterOptionsFragment extends Fragment {
 
     @OnClick(R.id.btnRegisterMail)
     protected void RegisterMailClick(){
-
+        changeToFragment(new RegisterMailFragment());
     }
 
 
     @OnClick(R.id.btnRegisterFacebook)
     protected void RegisterFacebookClick(){
-
+        changeToFragment(new RegisterMailFragment());
     }
 
 }

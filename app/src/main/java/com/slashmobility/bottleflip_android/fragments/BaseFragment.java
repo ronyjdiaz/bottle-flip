@@ -3,8 +3,10 @@ package com.slashmobility.bottleflip_android.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.EditText;
 
+import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.utils.BaseUtils;
 
 
@@ -93,6 +95,15 @@ public class BaseFragment extends Fragment {
      */
     protected void hideKeyboard(EditText editText) {
         mSlashBaseUtils.hideKeyboard(editText);
+    }
+
+
+    public void changeToFragment(Fragment fragment) {
+        if(fragment!=null){
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container,fragment);
+            fragmentTransaction.commit();
+        }
     }
 
 }
