@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.adapters.RankingAdapter;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -38,7 +40,12 @@ public class RankingFragment extends BaseFragment {
     private void getViews(){
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         rv_ranking.setLayoutManager(mLinearLayoutManager);
-        mAdapter = new RankingAdapter();
+        ArrayList<String> list = new ArrayList<String>();
+        //dummy rows
+        for (int i =0; i<50; i++){
+            list.add("");
+        }
+        mAdapter = new RankingAdapter(getActivity(),list);
         rv_ranking.setAdapter(mAdapter);
     }
 

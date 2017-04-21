@@ -36,14 +36,14 @@ public class ChallengesActivity extends BaseActivity {
     }
 
     private void getViews(){
-        default_toolbar.setTitle(getResources().getString(R.string.title_reto));
+        default_toolbar.setTitle(getResources().getString(R.string.title_challenge));
         setSupportActionBar(default_toolbar);
         changeToFragment( new ChallengesFragment() );
     }
 
     @OnClick(R.id.btn_reto)
     public void gotoReto(){
-        default_toolbar.setTitle(getResources().getString(R.string.title_reto));
+        default_toolbar.setTitle(getResources().getString(R.string.title_challenge));
         active_btn(TAG_1);
         changeToFragment( new ChallengesFragment() );
     }
@@ -57,7 +57,7 @@ public class ChallengesActivity extends BaseActivity {
 
     @OnClick(R.id.btn_perfil)
     public void gotoPerfil(){
-        default_toolbar.setTitle(getResources().getString(R.string.title_perfil));
+        default_toolbar.setTitle(getResources().getString(R.string.title_profile));
         active_btn(TAG_3);
         changeToFragment( new PerfilFragment() );
 

@@ -7,29 +7,7 @@
     tools:context="com.slashmobility.bottleflip_android.activities.ChallengeDetailActivity">
 
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:background="@color/color_bar_retos"
-        android:elevation="4dp"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/toolbarTitle"
-            android:textColor="@color/white"
-            android:layout_height="wrap_content" />
-
-        </android.support.v7.widget.Toolbar>
+<include layout="@layout/toolbarlayout" android:id="@+id/toolbarLayout"></include>
 
 
 

@@ -49,6 +49,17 @@
 
     </style>
 
+    <style name="EditText.Orange" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="android:textSize">@dimen/text_size_xnormal</item>
+        <item name="android:background">@drawable/edittext_shape_transparentbackground_orangeline</item>
+        <item name="android:textColor">@color/color_bar_perfil</item>
+        <item name="android:paddingLeft">@dimen/margin_xxbig</item>
+        <item name="android:paddingRight">@dimen/margin_xxsmall</item>
+        <item name="android:textColorHint">@color/color_bar_perfil</item>
+
+    </style>
+
     <style name="CustomActionBar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:windowActionBarOverlay">true</item>
         <!-- Support library compatibility -->

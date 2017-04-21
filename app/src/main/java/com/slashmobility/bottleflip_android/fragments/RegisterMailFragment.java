@@ -40,6 +40,7 @@ public class RegisterMailFragment extends BaseFragment {
         View v = inflater.inflate(R.layout.fragment_register_mail, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         ButterKnife.bind(this,v);
+
         return v;
     }
 

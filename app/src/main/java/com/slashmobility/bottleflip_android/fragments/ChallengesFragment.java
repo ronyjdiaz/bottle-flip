@@ -43,20 +43,11 @@ public class ChallengesFragment extends BaseFragment {
 
         rv_retos.setLayoutManager(mLinearLayoutManager);
         ArrayList<String> list = new ArrayList<String>();
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
 
-
+        //dummy rows
+        for (int i =0; i<50; i++){
+            list.add("");
+        }
 
 
         mAdapter = new ChallengeAdapter(getActivity(),list);

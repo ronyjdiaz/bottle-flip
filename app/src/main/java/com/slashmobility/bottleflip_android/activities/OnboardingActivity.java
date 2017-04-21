@@ -1,6 +1,7 @@
 package com.slashmobility.bottleflip_android.activities;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
@@ -43,10 +44,14 @@ public class OnboardingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         prefManager = new PreferenceManager(this);
-        if (!prefManager.isFirstTimeLaunch()) {
-            gotoWelcome();
-            finish();
+
+        if(!getIntent().hasExtra("isHelp")){
+            if (!prefManager.isFirstTimeLaunch()) {
+                gotoWelcome();
+                finish();
+            }
         }
+
 
         setContentView(R.layout.activity_onboarding);
         ButterKnife.bind(this);
@@ -67,8 +72,12 @@ public class OnboardingActivity extends BaseActivity {
     @OnClick(R.id.btn_skip)
     protected void gotoWelcome(){
         prefManager.setFirstTimeLaunch(false);
-        openActivity(WelcomeActivity.class);
+        if(!getIntent().hasExtra("isHelp"))
+        {
+            openActivity(WelcomeActivity.class);
+        }
         finish();
+
     }
 
     @OnClick(R.id.btn_next)
@@ -79,7 +88,8 @@ public class OnboardingActivity extends BaseActivity {
             // move to next screen
             viewPager.setCurrentItem(current);
         } else {
-            gotoWelcome();
+            if(!getIntent().hasExtra("isHelp"))
+                gotoWelcome();
             finish();
         }
     }

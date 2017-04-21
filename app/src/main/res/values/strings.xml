@@ -54,23 +54,30 @@
 
     <!-- Register -->
     <string name="buttle_code">Código botella</string>
-    <string name="btn_continua">CONTINUAR</string>
+    <string name="btn_continue">CONTINUAR</string>
     <string name="text_title_register">COMPLETA TU CUENTA</string>
     <string name="text_register_subtitle">Introduce el código que tienes en tu set de stickers:</string>
     <string name="text_uncode">Continuar sin código</string>
 
     <!--Retos -->
-    <string name="title_reto">Retos</string>
+    <string name="title_challenge">Retos</string>
     <string name="title_ranking">Ranking</string>
-    <string name="title_perfil">Perfil</string>
+    <string name="title_profile">Perfil</string>
     <string name="challenge">Reto</string>
 
     <!-- Perfil -->
     <string name="text_comparte_app">Comparte la app</string>
     <string name="text_help">Ayuda</string>
-    <string name="text_vincular">Vincular botella</string>
-    <string name="text_terminos">Términos y condiciones</string>
-    <string name="text_politica">Política de privacidad</string>
-    <string name="text_cerrar_sesion">Cerrar sesión</string>
+    <string name="text_link">Vincular botella</string>
+    <string name="text_terms">Términos y condiciones</string>
+    <string name="text_policy">Política de privacidad</string>
+    <string name="text_logout">Cerrar sesión</string>
+
+    <!-- LinkBottle -->
+    <string name="text_link_bottle">VINCULA TU BOTELLA</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

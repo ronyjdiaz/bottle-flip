@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
+
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/ranking_text_number"
+        android:id="@+id/textviewPosition"
         android:text="1º"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_big"
@@ -22,7 +23,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/ranking_text_name"
+                android:id="@+id/textviewName"
                 android:text="Nombre Apellido"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -31,7 +32,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/ranking_text_point"
+                android:id="@+id/textviewPoints"
                 android:text="0000 pts."
                 android:textColor="@color/white"
                 android:textStyle="bold"

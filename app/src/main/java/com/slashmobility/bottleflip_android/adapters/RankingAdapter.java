@@ -1,5 +1,6 @@
 package com.slashmobility.bottleflip_android.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.slashmobility.bottleflip_android.R;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,7 +21,11 @@ import butterknife.ButterKnife;
 
 public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.RankingViewHolder> {
 
-    public RankingAdapter(){
+    private Context mContext;
+    private ArrayList<String> mProductList;
+    public RankingAdapter(Context mContext, ArrayList<String> mProductList){
+        this.mProductList = mProductList;
+        this.mContext = mContext;
 
     }
 
@@ -37,13 +44,13 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.RankingV
 
     @Override
     public int getItemCount() {
-        return 100;
+        return mProductList.size();
     }
 
     public static class RankingViewHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.ranking_text_number) TextView mtvNumber;
-        @BindView(R.id.ranking_text_name) TextView mtvName;
-        @BindView(R.id.ranking_text_point) TextView mtvPoint;
+        @BindView(R.id.textviewPosition) TextView mtvNumber;
+        @BindView(R.id.textviewName) TextView mtvName;
+        @BindView(R.id.textviewPoints) TextView mtvPoint;
         View itemView;
         RankingViewHolder(View itemView){
             super(itemView);
