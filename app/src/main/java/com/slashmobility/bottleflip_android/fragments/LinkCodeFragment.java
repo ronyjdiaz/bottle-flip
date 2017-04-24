@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +64,17 @@ public class LinkCodeFragment extends BaseFragment {
     @OnClick(R.id.btnContinue)
     protected void continueClick(){
 
-        //changeToFragment();
+        if(TextUtils.isEmpty(medittextBottleCode.getText()) == false)
+        {
+            changeToFragment(new LinkUserCodeFragment());
+        }
+        else
+        {
+            showMessageDialog(getResources().getString(R.string.bottle_code_required));
+            return ;
+        }
+
+
 
     }
     @OnClick(R.id.imageviewBackButton)

@@ -8,6 +8,8 @@ public class SingletonSession {
 
     private static SingletonSession instance;
 
+    private String bottleCode;
+
 
     //no outer class can initialize this class's object
     private SingletonSession() {}
@@ -23,6 +25,11 @@ public class SingletonSession {
         return instance;
     }
 
+    public String getBottleCode() {
+        return bottleCode;
+    }
 
-
+    public void setBottleCode(String bottleCode) {
+        this.bottleCode = bottleCode;
+    }
 }
