@@ -1,9 +1,13 @@
 package com.slashmobility.bottleflip_android.fragments;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.slashmobility.bottleflip_android.R;
@@ -104,6 +108,15 @@ public class BaseFragment extends Fragment {
             fragmentTransaction.replace(R.id.fragment_container,fragment);
             fragmentTransaction.addToBackStack("");
             fragmentTransaction.commit();
+        }
+    }
+
+    public void changeColorBarNotification(int color){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getActivity().getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(ContextCompat.getColor(getActivity(), color));
         }
     }
 

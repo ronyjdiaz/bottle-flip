@@ -17,8 +17,8 @@ import butterknife.ButterKnife;
 
 public class ChallengeDetailActivity extends BaseActivity implements YouTubePlayer.OnInitializedListener {
 
-   // @BindView(R.id.toolbar)Toolbar mToolbar;
-    //@BindView(R.id.toolbarTitle)TextView mtoolbarTitle;
+    @BindView(R.id.toolbar)Toolbar mToolbar;
+    @BindView(R.id.toolbarTitle)TextView mtoolbarTitle;
 
 
     @Override
@@ -31,16 +31,18 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
                 (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_fragment);
 
         youTubePlayerFragment.initialize(Constants.GOOGLE_API_KEY, this);
+        configViews();
 
     }
 
- /*   private void configViews(){
+    private void configViews(){
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         mtoolbarTitle.setText(getString(R.string.challenge));
+        changeColorBarNotification(R.color.dark_blue);
     }
-*/
+
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
         if (!b) {

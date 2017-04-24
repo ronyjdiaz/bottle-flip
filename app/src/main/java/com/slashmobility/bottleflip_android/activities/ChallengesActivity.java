@@ -39,6 +39,7 @@ public class ChallengesActivity extends BaseActivity {
         default_toolbar.setTitle(getResources().getString(R.string.title_challenge));
         setSupportActionBar(default_toolbar);
         changeToFragment( new ChallengesFragment() );
+        changeColorBarNotification(R.color.green_start_challenges);
     }
 
     @OnClick(R.id.btn_reto)
@@ -67,18 +68,21 @@ public class ChallengesActivity extends BaseActivity {
         switch (tag){
             case TAG_1:
                 content_view.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_green));
+                changeColorBarNotification(R.color.green_start_challenges);
                 btn_reto.setImageResource(R.drawable.ic_retos_active);
                 btn_ranking.setImageResource(R.drawable.ic_ranking_default);
                 btn_perfil.setImageResource(R.drawable.ic_otros_default);
                 break;
             case TAG_2:
                 content_view.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_red));
+                changeColorBarNotification(R.color.red_start_ranking);
                 btn_ranking.setImageResource(R.drawable.ic_ranking_active);
                 btn_reto.setImageResource(R.drawable.ic_retos_default);
                 btn_perfil.setImageResource(R.drawable.ic_otros_default);
                 break;
             case TAG_3:
                 content_view.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_yellow));
+                changeColorBarNotification(R.color.yellow_start_ranking);
                 btn_reto.setImageResource(R.drawable.ic_retos_default);
                 btn_ranking.setImageResource(R.drawable.ic_ranking_default);
                 btn_perfil.setImageResource(R.drawable.ic_otros_active);
