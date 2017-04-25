@@ -26,7 +26,10 @@ public class SingletonSession {
     }
 
     public String getBottleCode() {
-        return bottleCode;
+        if(bottleCode!=null)
+            return bottleCode;
+        else
+            return "";
     }
 
     public void setBottleCode(String bottleCode) {

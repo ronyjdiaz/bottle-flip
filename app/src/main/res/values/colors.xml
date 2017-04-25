@@ -22,6 +22,7 @@
     <color name="color_bar_perfil">#ffa000</color>
     <color name="green_start_challenges">#147680</color>
     <color name="green_end_challenges">#3eb5b3</color>
+    <color name="light_green_challenges">#289c8f</color>
 
     <color name="orange_start">#fa6659</color>
     <color name="orange_end">#fab559</color>

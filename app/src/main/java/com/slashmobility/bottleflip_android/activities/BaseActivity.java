@@ -3,8 +3,8 @@ package com.slashmobility.bottleflip_android.activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
@@ -13,6 +13,8 @@ import android.widget.EditText;
 
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.utils.BaseUtils;
+
+import java.io.File;
 
 
 /**
@@ -122,4 +124,18 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    public static final class BaseAlbumDirFactory extends AlbumStorageDirFactory {
+
+        // Standard storage location for digital camera files
+        private static final String CAMERA_DIR = "/dcim/";
+
+        @Override
+        public File getAlbumStorageDir(String albumName) {
+            return new File(
+                    Environment.getExternalStorageDirectory()
+                    + CAMERA_DIR
+                    + albumName
+            );
+        }
+    }
 }

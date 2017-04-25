@@ -4,32 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context="com.slashmobility.bottleflip_android.activities.ChallengeDetailActivity">
 
 
-
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <include layout="@layout/toolbarlayout" android:id="@+id/toolbarlayout"></include>
-
-        <fragment
-        android:name="com.google.android.youtube.player.YouTubePlayerFragment"
-        android:id="@+id/youtube_fragment"
-        android:layout_below="@+id/toolbarlayout"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"/>
-
-    </RelativeLayout>
-
-</ScrollView>
-
-
-
+    <include layout="@layout/layout_frame_challenge_demo" android:id="@+id/layout_demo_challenge"
+    ></include>
 </RelativeLayout>

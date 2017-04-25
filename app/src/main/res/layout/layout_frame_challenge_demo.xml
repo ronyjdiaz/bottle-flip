@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/toolbarlayout" android:id="@+id/toolbarlayout"></include>
+
+            <fragment
+                android:name="com.google.android.youtube.player.YouTubePlayerFragment"
+                android:id="@+id/youtube_fragment"
+                android:layout_below="@+id/toolbarlayout"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/margin_big"
+                android:layout_marginBottom="@dimen/margin_big"
+                android:layout_below="@+id/youtube_fragment"
+                android:text="Vuelta media"
+                android:id="@+id/textviewChallengeName"
+                android:layout_marginStart="@dimen/margin_big"
+                android:layout_marginEnd="@dimen/margin_xxsmall"
+                android:textSize="@dimen/text_size_xxnormal"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@drawable/line_gray"
+                android:layout_marginStart="@dimen/margin_big"
+                android:layout_marginEnd="@dimen/margin_big"
+                android:id="@+id/viewLine"
+                android:layout_below="@+id/textviewChallengeName"
+                android:layout_height="10dp"></View>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_below="@+id/viewLine"
+                android:text="Da una vuelta a la botella sobre una superfície plana con la dificultad de hacerlo de espaldas.
+- 2 pts por probarlo de espaldas.
+- 3 pts por probarlo sobre superfície ajena al suelo.
+- 5 pts por dejarla de pie."
+                android:layout_marginStart="@dimen/margin_big"
+                android:layout_marginEnd="@dimen/margin_xxsmall"
+                android:textSize="@dimen/text_size_normal"
+                android:lineSpacingExtra="6dp"
+                android:id="@+id/textviewInstructionsChallenge"
+                android:layout_height="wrap_content" />
+
+
+            <Button
+                android:id="@+id/btnAccept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/button_lg_radius"
+                android:text="@string/do_challenge"
+                android:textColor="@color/white"
+                android:layout_below="@+id/textviewInstructionsChallenge"
+                android:textSize="@dimen/text_size_xxnormal"></Button>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>
