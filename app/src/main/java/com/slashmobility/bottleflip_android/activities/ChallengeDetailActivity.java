@@ -1,6 +1,8 @@
 package com.slashmobility.bottleflip_android.activities;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -8,7 +10,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,11 +24,11 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.slashmobility.bottleflip_android.Constants;
 import com.slashmobility.bottleflip_android.R;
+import com.slashmobility.bottleflip_android.fragments.RegisterOptionsFragment;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 import com.slashmobility.bottleflip_android.utils.Utils;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -42,14 +43,7 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
     @BindView(R.id.textviewChallengeName)TextView mtextviewChallengeName;
     @BindView(R.id.textviewInstructionsChallenge)TextView mtextviewInstructionsChallenge;
     private static final int VIDEO_CAPTURE = 101;
-    private Uri mVideoUri;
-    private Uri picUri;
     private String mCurrentVideoPath;
-    private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +56,7 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
         youTubePlayerFragment.initialize(Constants.GOOGLE_API_KEY, this);
         configViews();
         configPermissions();
-        mAlbumStorageDirFactory = new BaseAlbumDirFactory();
+
 
     }
 
@@ -104,14 +98,12 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
 
     @OnClick(R.id.btnAccept)
     protected void doChallenge() {
-        if(SingletonSession.getInstance().getBottleCode().equals(""))
+        if(!SingletonSession.getInstance().getBottleCode().equals(""))
         {
             if(hasCamera()){
-                //File mediaFile = createVideoFile();
-                //
-                File mediaFile =
-                        new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                                + "/myvideo.mp4");
+
+                File mediaFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+                                + Constants.DCIM + getAlbumName() + "/"+Constants.VIDEO_NAME);
                 mCurrentVideoPath = mediaFile.getAbsolutePath();
                 Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                 Uri videoUri = Uri.fromFile(mediaFile);
@@ -120,13 +112,27 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
 
             }
             else{
-                showMessageDialog("Mensaje temporal: No tiene cámara");
+                showMessageDialog(getString(R.string.no_camera));
             }
-
         }
         else
         {
-            showMessageDialog("Mensaje temporal: No tiene código");
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.alert_no_code)
+                    .setTitle(R.string.need_bottle);
+
+            builder.setPositiveButton(R.string.link, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    openActivity(LinkBottleActivity.class);
+                }
+            });
+            builder.setNegativeButton(R.string.understood, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
     }
     private boolean hasCamera() {
@@ -143,17 +149,16 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == VIDEO_CAPTURE) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "Video saved to:\n" +
-                        data.getData(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Video saved to:\n" +data.getData(), Toast.LENGTH_LONG).show();
                 Bundle bundle = new Bundle();
+                mCurrentVideoPath = data.getDataString();
                 bundle.putString("VideoUri",mCurrentVideoPath);
                 openActivity(VideoPlayerActivity.class,bundle);
+
             } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "Video recording cancelled.",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.cancel_record),Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Failed to record video",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.error_recording),Toast.LENGTH_LONG).show();
             }
         }
 
@@ -161,39 +166,6 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
 
     private String getAlbumName() {
         return getString(R.string.app_name);
-    }
-
-    private File getAlbumDir() {
-        File storageDir = null;
-
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-
-            storageDir = mAlbumStorageDirFactory.getAlbumStorageDir(getAlbumName());
-
-            if (storageDir != null) {
-                if (! storageDir.mkdirs()) {
-                    if (! storageDir.exists()){
-                        Log.d("CameraSample", "failed to create directory");
-                        return null;
-                    }
-                }
-            }
-
-        } else {
-            Log.v(getString(R.string.app_name), "External storage is not mounted READ/WRITE.");
-        }
-
-        return storageDir;
-    }
-    private File createVideoFile()  {
-        File albumF = getAlbumDir();
-        File imageF = null;
-        try {
-            imageF = File.createTempFile(Constants.VIDEO_NAME, Constants.VIDEO_EXTENSION, albumF);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return imageF;
     }
 
 }

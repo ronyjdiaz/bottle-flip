@@ -24,9 +24,9 @@
     <application
         android:name=".BottleApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher_xxxhdpi"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_launcher_xxxhdpi"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
@@ -48,6 +48,11 @@
             android:name=".activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity
@@ -82,18 +87,20 @@
             android:parentActivityName=".activities.ChallengesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             </activity>
         <activity
             android:name=".activities.LinkBottleActivity"
             android:parentActivityName=".activities.ChallengesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".activities.VideoPlayerActivity"></activity>
+        <activity android:name=".activities.VideoPlayerActivity"
+            android:parentActivityName=".activities.ChallengesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            >
+
+        </activity>
     </application>
 
 </manifest>

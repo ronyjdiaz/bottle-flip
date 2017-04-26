@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.activities.LinkBottleActivity;
 import com.slashmobility.bottleflip_android.activities.LoginActivity;
+import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 import com.slashmobility.bottleflip_android.utils.Utils;
 
 import butterknife.BindView;
@@ -66,7 +67,9 @@ public class LinkCodeFragment extends BaseFragment {
 
         if(TextUtils.isEmpty(medittextBottleCode.getText()) == false)
         {
+            SingletonSession.getInstance().setBottleCode(medittextBottleCode.getText().toString());
             changeToFragment(new LinkUserCodeFragment());
+
         }
         else
         {

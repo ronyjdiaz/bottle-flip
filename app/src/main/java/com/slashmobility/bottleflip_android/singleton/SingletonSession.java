@@ -9,6 +9,7 @@ public class SingletonSession {
     private static SingletonSession instance;
 
     private String bottleCode;
+    private String videoUri;
 
 
     //no outer class can initialize this class's object
@@ -34,5 +35,13 @@ public class SingletonSession {
 
     public void setBottleCode(String bottleCode) {
         this.bottleCode = bottleCode;
+    }
+
+    public String getVideoUri() {
+        return videoUri;
+    }
+
+    public void setVideoUri(String videoUri) {
+        this.videoUri = videoUri;
     }
 }

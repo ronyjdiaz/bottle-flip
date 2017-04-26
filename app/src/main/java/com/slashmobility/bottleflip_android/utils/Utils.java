@@ -7,19 +7,32 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
 import android.util.Base64;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
+import net.protyposis.android.mediaplayer.MediaSource;
+import net.protyposis.android.mediaplayer.UriSource;
+import net.protyposis.android.mediaplayer.dash.AdaptationLogic;
+import net.protyposis.android.mediaplayer.dash.DashSource;
+import net.protyposis.android.mediaplayer.dash.SimpleRateBasedAdaptationLogic;
+
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -222,6 +235,119 @@ public class Utils {
         if(hadContentDescription)
             toolbar.setLogoDescription(null);
         return logoIcon;
+    }
+
+    private static final String TAG = Utils.class.getSimpleName();
+
+    public static MediaSource uriToMediaSource(Context context, Uri uri) {
+        MediaSource source = null;
+
+        // A DASH source is either detected if the given URL has an .mpd extension or if the DASH
+        // pseudo protocol has been prepended.
+        if(uri.toString().endsWith(".mpd") || uri.toString().startsWith("dash://")) {
+            AdaptationLogic adaptationLogic;
+
+            // Strip dash:// pseudo protocol
+            if(uri.toString().startsWith("dash://")) {
+                uri = Uri.parse(uri.toString().substring(7));
+            }
+
+            //adaptationLogic = new ConstantPropertyBasedLogic(ConstantPropertyBasedLogic.Mode.HIGHEST_BITRATE);
+            adaptationLogic = new SimpleRateBasedAdaptationLogic();
+
+            source = new DashSource(context, uri, adaptationLogic);
+        } else {
+            source = new UriSource(context, uri);
+        }
+        return source;
+    }
+
+    public static void uriToMediaSourceAsync(final Context context, Uri uri, MediaSourceAsyncCallbackHandler callback) {
+        LoadMediaSourceAsyncTask loadingTask = new LoadMediaSourceAsyncTask(context, callback);
+
+        try {
+            loadingTask.execute(uri).get();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+    }
+
+    public static void setActionBarSubtitleEllipsizeMiddle(Activity activity) {
+        // http://blog.wu-man.com/2011/12/actionbar-api-provided-by-google-on.html
+        int subtitleId = activity.getResources().getIdentifier("action_bar_subtitle", "id", "android");
+        TextView subtitleView = (TextView) activity.findViewById(subtitleId);
+        subtitleView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+    }
+
+    public static boolean saveBitmapToFile(Bitmap bmp, File file) {
+        try {
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+            bmp.compress(Bitmap.CompressFormat.PNG, 90, bos);
+            bos.close();
+            return true;
+        } catch (IOException e) {
+            Log.e(TAG, "failed to save frame", e);
+        }
+        return false;
+    }
+
+    private static class LoadMediaSourceAsyncTask extends AsyncTask<Uri, Void, MediaSource> {
+
+        private Context mContext;
+        private MediaSourceAsyncCallbackHandler mCallbackHandler;
+        private MediaSource mMediaSource;
+        private Exception mException;
+
+        public LoadMediaSourceAsyncTask(Context context, MediaSourceAsyncCallbackHandler callbackHandler) {
+            mContext = context;
+            mCallbackHandler = callbackHandler;
+        }
+
+        @Override
+        protected MediaSource doInBackground(Uri... params) {
+            try {
+                mMediaSource = Utils.uriToMediaSource(mContext, params[0]);
+                return mMediaSource;
+            } catch (Exception e) {
+                mException = e;
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(MediaSource mediaSource) {
+            if(mException != null) {
+                mCallbackHandler.onException(mException);
+            } else {
+                mCallbackHandler.onMediaSourceLoaded(mMediaSource);
+            }
+        }
+    }
+
+    public static interface MediaSourceAsyncCallbackHandler {
+        void onMediaSourceLoaded(MediaSource mediaSource);
+        void onException(Exception e);
+    }
+
+    /**
+     * Iterates a hierarchy of exceptions and combines their messages. Useful for compact
+     * error representation to the user during debugging/development.
+     */
+    public static String getExceptionMessageHistory(Throwable e) {
+        String messages = "";
+
+        String message = e.getMessage();
+        if(message != null) {
+            messages += message;
+        }
+        while((e = e.getCause()) != null) {
+            message = e.getMessage();
+            if(message != null) {
+                messages += " <- " + message;
+            }
+        }
+
+        return messages;
     }
 
 

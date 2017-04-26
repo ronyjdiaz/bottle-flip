@@ -59,12 +59,21 @@
     <string name="text_register_subtitle">Introduce el código que tienes en tu set de stickers:</string>
     <string name="text_uncode">Continuar sin código</string>
 
-    <!--Retos -->
+    <!--Challenges -->
     <string name="title_challenge">Retos</string>
     <string name="title_ranking">Ranking</string>
     <string name="title_profile">Perfil</string>
     <string name="challenge">Reto</string>
     <string name="do_challenge">HACER RETO</string>
+    <string name="no_camera">Su dispositivo no posee una cámara, por lo tanto no puede realizar el reto</string>
+    <string name="alert_no_code">Esta funcionalidad está limitada porque aún no vinculaste tu botella, si quieres disfrutar de todo lo que te ofrece la app, pulsa "Vincular". Si prefieres seguir navegando, pulsa "Entendido".</string>
+    <string name="need_bottle">Necesitas una bottle!</string>
+    <string name="understood">Entendido</string>
+    <string name="link">Vincular</string>
+    <string name="error_recording">Error grabando el video.</string>
+    <string name="cancel_record">Cancelada la grabación del video</string>
+
+
 
     <!-- Perfil -->
     <string name="text_comparte_app">Comparte la app</string>
@@ -82,5 +91,8 @@
     <string name="create_user_label">CREA TU USUARIO:</string>
     <string name="link_user_instruction">Registra el código con un usuario y podrás empezar a competir!</string>
 
+
+    <!-- MENU -->
+    <string name="menu_apply">APLICAR</string>
 
 </resources>

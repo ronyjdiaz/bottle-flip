@@ -57,8 +57,8 @@ public class FirebaseMessagingServiceClass extends com.google.firebase.messaging
                 .autoCancel(true)
                 .title("Bottle Flip Message")
                 .message(messageBody)
-                .smallIcon(R.drawable.img_splash_child)
-                .largeIcon(R.drawable.img_splash_child)
+                .smallIcon(R.drawable.ic_launcher_xxxhdpi)
+                .largeIcon(R.drawable.ic_launcher_xxxhdpi)
                 .flags(Notification.DEFAULT_ALL)
                 .simple()
                 .build();
