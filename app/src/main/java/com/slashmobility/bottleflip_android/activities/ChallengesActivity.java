@@ -6,6 +6,8 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.fragments.ChallengesFragment;
 import com.slashmobility.bottleflip_android.fragments.PerfilFragment;
@@ -25,6 +27,7 @@ public class ChallengesActivity extends BaseActivity {
     final static String TAG_1 = "RETO";
     final static String TAG_2 = "RANKING";
     final static String TAG_3 = "PERFIL";
+    private DatabaseReference database;
 
 
     @Override
@@ -32,6 +35,7 @@ public class ChallengesActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reto);
         ButterKnife.bind(this);
+        database = FirebaseDatabase.getInstance().getReference();
         getViews();
     }
 
@@ -89,5 +93,9 @@ public class ChallengesActivity extends BaseActivity {
                 break;
 
         }
+    }
+
+    public DatabaseReference getDatabase() {
+        return database;
     }
 }

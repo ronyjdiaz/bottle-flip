@@ -98,13 +98,13 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
 
     @OnClick(R.id.btnAccept)
     protected void doChallenge() {
-        if(!SingletonSession.getInstance().getBottleCode().equals(""))
+        if(SingletonSession.getInstance().getBottleCode().equals(""))
         {
             if(hasCamera()){
 
                 File mediaFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
                                 + Constants.DCIM + getAlbumName() + "/"+Constants.VIDEO_NAME);
-                mCurrentVideoPath = mediaFile.getAbsolutePath();
+                mCurrentVideoPath = "file://" + mediaFile.getAbsolutePath();
                 Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                 Uri videoUri = Uri.fromFile(mediaFile);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, videoUri);
@@ -151,7 +151,7 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
             if (resultCode == RESULT_OK) {
                 //Toast.makeText(this, "Video saved to:\n" +data.getData(), Toast.LENGTH_LONG).show();
                 Bundle bundle = new Bundle();
-                mCurrentVideoPath = data.getDataString();
+               // mCurrentVideoPath = data.getDataString();
                 bundle.putString("VideoUri",mCurrentVideoPath);
                 openActivity(VideoPlayerActivity.class,bundle);
 
