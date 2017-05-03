@@ -59,7 +59,7 @@
     <string name="text_register_subtitle">Introduce el código que tienes en tu set de stickers:</string>
     <string name="text_uncode">Continuar sin código</string>
 
-    <!--Challenges -->
+    <!--Challenge -->
     <string name="title_challenge">Retos</string>
     <string name="title_ranking">Ranking</string>
     <string name="title_profile">Perfil</string>
@@ -71,8 +71,8 @@
     <string name="understood">Entendido</string>
     <string name="link">Vincular</string>
     <string name="error_recording">Error grabando el video.</string>
+    <string name="pts">Pts</string>
     <string name="cancel_record">Cancelada la grabación del video</string>
-
 
 
     <!-- Perfil -->

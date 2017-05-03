@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/textviewPosition"
-        android:text="1º"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_big"
         android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
 
             <TextView
                 android:id="@+id/textviewName"
-                android:text="Nombre Apellido"
+                android:text=""
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_xnormal2"
@@ -33,7 +33,7 @@
 
             <TextView
                 android:id="@+id/textviewPoints"
-                android:text="0000 pts."
+                android:text=""
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_xnormal2"

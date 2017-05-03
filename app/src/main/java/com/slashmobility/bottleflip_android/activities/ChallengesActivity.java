@@ -10,7 +10,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.fragments.ChallengesFragment;
-import com.slashmobility.bottleflip_android.fragments.PerfilFragment;
+import com.slashmobility.bottleflip_android.fragments.ProfileFragment;
 import com.slashmobility.bottleflip_android.fragments.RankingFragment;
 
 import butterknife.BindView;
@@ -64,7 +64,7 @@ public class ChallengesActivity extends BaseActivity {
     public void gotoPerfil(){
         default_toolbar.setTitle(getResources().getString(R.string.title_profile));
         active_btn(TAG_3);
-        changeToFragment( new PerfilFragment() );
+        changeToFragment( new ProfileFragment() );
 
     }
 

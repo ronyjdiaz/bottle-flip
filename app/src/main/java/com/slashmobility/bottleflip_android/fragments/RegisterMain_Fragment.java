@@ -13,12 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.slashmobility.bottleflip_android.MainActivity;
 import com.slashmobility.bottleflip_android.R;
+import com.slashmobility.bottleflip_android.activities.ChallengesActivity;
+import com.slashmobility.bottleflip_android.activities.RegisterActivity;
 import com.slashmobility.bottleflip_android.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Challenge;
 
 
 public class RegisterMain_Fragment extends BaseFragment {
@@ -51,7 +55,8 @@ public class RegisterMain_Fragment extends BaseFragment {
 
         builder.setPositiveButton(R.string.continue_without_code, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                changeToFragment(new RegisterOptionsFragment());
+                //changeToFragment(new RegisterOptionsFragment());
+                ((RegisterActivity)getActivity()).openActivity(ChallengesActivity.class);
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

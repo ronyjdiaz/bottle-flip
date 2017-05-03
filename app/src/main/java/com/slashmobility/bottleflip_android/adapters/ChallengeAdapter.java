@@ -2,19 +2,25 @@ package com.slashmobility.bottleflip_android.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.activities.ChallengeDetailActivity;
+import com.slashmobility.bottleflip_android.activities.ChallengesActivity;
+import com.slashmobility.bottleflip_android.model.Challenge;
+import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -24,10 +30,10 @@ import butterknife.ButterKnife;
 public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.ChallengeViewHolder> {
 
     private Context mContext;
-    private ArrayList<String> mProductList;
+    private ArrayList<Challenge> mChallenges;
 
-    public ChallengeAdapter(Context mContext, ArrayList<String> mProductList){
-        this.mProductList = mProductList;
+    public ChallengeAdapter(Context mContext, ArrayList<Challenge> mChallenges){
+        this.mChallenges = mChallenges;
         this.mContext = mContext;
     }
 
@@ -41,29 +47,81 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.Chal
 
     @Override
     public void onBindViewHolder(ChallengeAdapter.ChallengeViewHolder holder, int position) {
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext,ChallengeDetailActivity.class);
-                mContext.startActivity(intent);
+
+        Challenge challengeItem = mChallenges.get(position);
+        holder.textviewChallengeName.setText(challengeItem.getName());
+        holder.textviewChallengeNumber.setText(mContext.getString(R.string.challenge) + " " + String.valueOf(challengeItem.getLevel()));
+        holder.imageIconLocked.setVisibility(View.GONE);
+
+        if(!SingletonSession.getInstance().getBottleCode().equals(""))
+        {
+
+            if(SingletonSession.getInstance().getScore()>=challengeItem.getScore())
+            {
+                holder.textviewChallengePoints.setText(String.valueOf(challengeItem.getScore()) + " " + mContext.getString(R.string.pts));
+                holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("positionChallenge", position);
+                        ((ChallengesActivity)mContext).openActivity(ChallengeDetailActivity.class, bundle);
+
+                    }
+                });
             }
-        });
+            else
+            {
+                holder.imageIconChallenge.setImageResource(R.drawable.ic_reto_default);
+                holder.imageIconLocked.setVisibility(View.VISIBLE);
+                holder.textviewChallengePoints.setVisibility(View.GONE);
+
+            }
+        }
+        else
+        {
+            holder.imageIconChallenge.setImageResource(R.drawable.ic_reto_default);
+            holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("positionChallenge", position);
+                    ((ChallengesActivity)mContext).openActivity(ChallengeDetailActivity.class, bundle);
+
+                }
+            });
+        }
+
+
+
+
+
+
+
     }
 
 
     @Override
     public int getItemCount() {
 
-        return mProductList.size();
+        return mChallenges.size();
     }
 
     public static class ChallengeViewHolder extends RecyclerView.ViewHolder{
-        LinearLayout linearLayout;
-        TextView textviewChallengeName;
+
+        @BindView(R.id.textviewChallengeName) TextView textviewChallengeName;
+        @BindView(R.id.textviewChallengePoints) TextView textviewChallengePoints;
+        @BindView(R.id.textviewChallengeNumber) TextView textviewChallengeNumber;
+        @BindView(R.id.layoutMain) LinearLayout linearLayout;
+        @BindView(R.id.imageIconChallenge)ImageView imageIconChallenge;
+        @BindView(R.id.imageIconLocked) ImageView imageIconLocked;
+
+        View itemView;
         ChallengeViewHolder(View itemView){
             super(itemView);
-            textviewChallengeName = (TextView)itemView.findViewById(R.id.textviewChallengeName);
-            linearLayout = (LinearLayout)itemView.findViewById(R.id.layoutMain);
+            ButterKnife.bind(this, itemView);
+            this.itemView = itemView;
 
         }
     }

@@ -14,6 +14,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.activities.ChallengesActivity;
 import com.slashmobility.bottleflip_android.adapters.ChallengeAdapter;
+import com.slashmobility.bottleflip_android.model.Challenge;
+import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,23 +41,28 @@ public class ChallengesFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_retos, container, false);
         ButterKnife.bind(this, mView);
-        getViews();
-        initListenets();
+        configViews();
+        initListeners();
         return mView;
     }
 
-    private void initListenets(){
+    private void initListeners(){
 
         DatabaseReference database = ((ChallengesActivity)getActivity()).getDatabase();
         database.child("challenges").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List notes = new ArrayList<>();
+                ArrayList challengesList = new ArrayList<>();
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-                    //Note note = noteDataSnapshot.getValue(Note.class);
-                    //notes.add(note);
+                    Challenge challenge = noteDataSnapshot.getValue(Challenge.class);
+                    challengesList.add(challenge);
                 }
-                //adapter.updateList(notes);
+
+                SingletonSession.getInstance().setChallenges(challengesList);
+
+                mAdapter = new ChallengeAdapter(getActivity(),challengesList);
+                rv_retos.setAdapter(mAdapter);
+
             }
 
             @Override
@@ -66,20 +73,11 @@ public class ChallengesFragment extends BaseFragment {
         });
     }
 
-    private void getViews(){
+    private void configViews(){
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
         rv_retos.setLayoutManager(mLinearLayoutManager);
-        ArrayList<String> list = new ArrayList<String>();
-
-        //dummy rows
-        for (int i =0; i<50; i++){
-            list.add("");
-        }
 
 
-        mAdapter = new ChallengeAdapter(getActivity(),list);
-        rv_retos.setAdapter(mAdapter);
     }
 }

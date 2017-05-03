@@ -10,6 +10,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
+
             android:id="@+id/layoutMain"
             android:layout_height="wrap_content">
             <ImageView
@@ -33,8 +34,8 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Reto 1"
-                        android:id="@+id/textviewChallengeName"
+                        android:text=""
+                        android:id="@+id/textviewChallengeNumber"
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="@dimen/text_size_xnormal2"
@@ -42,20 +43,31 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:text="7 pts."
+                        android:text=""
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="@dimen/text_size_normal"
+                        android:id="@+id/textviewChallengePoints"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:visibility="gone"
+                        android:id="@+id/imageIconLocked"
+                        android:src="@drawable/ic_reto_blocked"
+                        android:layout_height="wrap_content" />
+
+
 
                 </RelativeLayout>
 
                 <TextView
-                    android:text="Vuelta simple interior"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_normal"
+                    android:id="@+id/textviewChallengeName"
                     android:layout_marginTop="@dimen/margin_small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

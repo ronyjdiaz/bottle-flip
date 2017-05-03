@@ -12,6 +12,8 @@ import com.slashmobility.bottleflip_android.activities.ChallengesActivity;
 import com.slashmobility.bottleflip_android.activities.LinkBottleActivity;
 import com.slashmobility.bottleflip_android.activities.LoginActivity;
 import com.slashmobility.bottleflip_android.activities.OnboardingActivity;
+import com.slashmobility.bottleflip_android.activities.WelcomeActivity;
+import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,7 +23,7 @@ import butterknife.OnClick;
  * Created by Edgar-W10 on 8/4/2017.
  */
 
-public class PerfilFragment extends BaseFragment {
+public class ProfileFragment extends BaseFragment {
 
     @BindView(R.id.layoutLogout) LinearLayout layoutLogout;
     @BindView(R.id.layoutTermsAndConditions) LinearLayout layoutTermsAndConditions;
@@ -33,24 +35,30 @@ public class PerfilFragment extends BaseFragment {
 
     private View mView;
 
-    public PerfilFragment() {}
+    public ProfileFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_perfil, container, false);
         ButterKnife.bind(this, mView);
-        getViews();
+        configViews();
         return mView;
     }
 
 
-    private void getViews(){
+    private void configViews(){
+        if(!SingletonSession.getInstance().getBottleCode().equals("")){
+            layoutSetBottleCode.setEnabled(false);
+            layoutSetBottleCode.setClickable(false);
+            layoutSetBottleCode.getBackground().setAlpha(128);
+        }
+
     }
 
     @OnClick(R.id.layoutLogout)
     protected void logout(){
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        Intent intent = new Intent(getActivity(), WelcomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
@@ -79,6 +87,10 @@ public class PerfilFragment extends BaseFragment {
 
     @OnClick(R.id.layoutSetBottleCode)
     protected void linkCode(){
-        ((ChallengesActivity)getActivity()).openActivity(LinkBottleActivity.class);
+        if(SingletonSession.getInstance().getBottleCode().equals("")){
+            ((ChallengesActivity)getActivity()).openActivity(LinkBottleActivity.class);
+        }
+
+
     }
 }

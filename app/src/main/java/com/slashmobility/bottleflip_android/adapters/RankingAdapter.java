@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.slashmobility.bottleflip_android.R;
+import com.slashmobility.bottleflip_android.model.Score;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,9 +24,9 @@ import butterknife.ButterKnife;
 public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.RankingViewHolder> {
 
     private Context mContext;
-    private ArrayList<String> mProductList;
-    public RankingAdapter(Context mContext, ArrayList<String> mProductList){
-        this.mProductList = mProductList;
+    private ArrayList<Score> scoreList;
+    public RankingAdapter(Context mContext, ArrayList<Score> scoreList){
+        this.scoreList = scoreList;
         this.mContext = mContext;
 
     }
@@ -38,13 +40,17 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.RankingV
 
     @Override
     public void onBindViewHolder(RankingViewHolder holder, int position) {
-        holder.mtvNumber.setText(position + "º");
+        Score scoreItem = scoreList.get(position);
+        holder.mtvNumber.setText(++position + "º");
+        holder.mtvName.setText(scoreItem.getDisplayName());
+        holder.mtvPoint.setText(String.valueOf(scoreItem.getScore()) +" "+mContext.getString(R.string.pts) );
+
         Log.e("item", "" + position);
     }
 
     @Override
     public int getItemCount() {
-        return mProductList.size();
+        return scoreList.size();
     }
 
     public static class RankingViewHolder extends RecyclerView.ViewHolder{

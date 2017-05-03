@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.slashmobility.bottleflip_android.R;
+import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 import com.slashmobility.bottleflip_android.utils.Utils;
 
 import butterknife.BindView;
@@ -28,8 +29,8 @@ public class WelcomeActivity extends BaseActivity {
     private void initView(){
         Utils.changeColorDrawable(btnLogin, WelcomeActivity.this, R.color.white);
         Utils.changeStrokeColorDrawable(btnLogin, WelcomeActivity.this, 3, R.color.black);
-
         Utils.changeColorDrawable(btnRegister, WelcomeActivity.this, R.color.black);
+        SingletonSession.getInstance().setBottleCode("");
     }
 
     @OnClick(R.id.btnLogin)

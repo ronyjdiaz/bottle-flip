@@ -25,6 +25,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.slashmobility.bottleflip_android.R;
+import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 import com.slashmobility.bottleflip_android.utils.Utils;
 
 import java.util.Arrays;
@@ -169,6 +170,7 @@ public class LoginActivity extends BaseActivity {
             Utils.hideSoftKeyboard(LoginActivity.this);
             String mEmail = medittextUsername.getText().toString();
             String mPassword = medittextPassword.getText().toString();
+            SingletonSession.getInstance().setBottleCode("TempCode");
             openActivity(ChallengesActivity.class);
         }
     }
@@ -215,7 +217,9 @@ public class LoginActivity extends BaseActivity {
                             return;
                         }
                         finish();
+                        SingletonSession.getInstance().setBottleCode("TempCode");
                         openActivity(ChallengesActivity.class);
+
 
                         // ...
                     }

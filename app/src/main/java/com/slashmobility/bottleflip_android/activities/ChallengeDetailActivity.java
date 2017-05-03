@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,8 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.slashmobility.bottleflip_android.Constants;
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.fragments.RegisterOptionsFragment;
+import com.slashmobility.bottleflip_android.model.Challenge;
+import com.slashmobility.bottleflip_android.model.Rule;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 import com.slashmobility.bottleflip_android.utils.Utils;
 
@@ -56,6 +59,7 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
         youTubePlayerFragment.initialize(Constants.GOOGLE_API_KEY, this);
         configViews();
         configPermissions();
+        setData();
 
 
     }
@@ -78,16 +82,39 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        mtoolbarTitle.setText("Reto 6");//Challenge name
+
         mToolbar.setBackgroundColor(getResources().getColor(R.color.light_green_challenges));
         changeColorBarNotification(R.color.light_green_challenges);
         Utils.changeColorDrawable(mbtnAccept, this, R.color.light_green_challenges);
     }
 
+    private void setData(){
+
+        Bundle bundle =  getIntent().getExtras();
+        Challenge challenge;
+        int mpositionChallenge = bundle.getInt("positionChallenge",-1);
+        if(mpositionChallenge>=0){
+            challenge = SingletonSession.getInstance().getChallenges().get(mpositionChallenge);
+            mtoolbarTitle.setText(getString(R.string.challenge) + " " + String.valueOf(challenge.getLevel()));//Challenge name
+            mtextviewChallengeName.setText(challenge.getName());
+            mtextviewInstructionsChallenge.setText(challenge.getDescription());
+            for (Rule rule: challenge.getPoints())
+            {
+                mtextviewInstructionsChallenge.setText( mtextviewInstructionsChallenge.getText().toString() +  System.lineSeparator());
+                mtextviewInstructionsChallenge.setText(mtextviewInstructionsChallenge.getText().toString() + "-" + String.valueOf(rule.getValue()));
+                mtextviewInstructionsChallenge.setText(mtextviewInstructionsChallenge.getText().toString() + " " + rule.getTitle());
+
+            }
+
+        }
+
+
+    }
+
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
         if (!b) {
-            youTubePlayer.cueVideo("p80Jo3YiCSE");
+            youTubePlayer.cueVideo("ch7_EyVvldM");
         }
     }
 
@@ -98,7 +125,7 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
 
     @OnClick(R.id.btnAccept)
     protected void doChallenge() {
-        if(SingletonSession.getInstance().getBottleCode().equals(""))
+        if(!SingletonSession.getInstance().getBottleCode().equals(""))
         {
             if(hasCamera()){
 
