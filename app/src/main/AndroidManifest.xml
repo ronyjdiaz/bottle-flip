@@ -40,7 +40,7 @@
         </service>
         <service
             android:name=".services.FirebaseInstanceIDService"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name=".activities.SplashActivity"
@@ -83,7 +83,7 @@
             android:name=".activities.ChallengeDetailActivity"
             android:parentActivityName=".activities.ChallengesActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.LinkBottleActivity"
             android:parentActivityName=".activities.ChallengesActivity"
@@ -93,7 +93,14 @@
             android:name=".activities.VideoPlayerActivity"
             android:parentActivityName=".activities.ChallengesActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activities.ChallengeReviewActivity"
+            android:parentActivityName=".activities.ChallengesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            >
+
+        </activity>
     </application>
 
 </manifest>

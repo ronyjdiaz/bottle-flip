@@ -73,6 +73,10 @@
     <string name="error_recording">Error grabando el video.</string>
     <string name="pts">Pts</string>
     <string name="cancel_record">Cancelada la grabación del video</string>
+    <string name="friends">Amigos</string>
+    <string name="tutorial">TUTORIAL</string>
+    <string name="my_challenge">MI RETO</string>
+    <string name="improve_challenge">MEJORAR RETO</string>
 
 
     <!-- Perfil -->

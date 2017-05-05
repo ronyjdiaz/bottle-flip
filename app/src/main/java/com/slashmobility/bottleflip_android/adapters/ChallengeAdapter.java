@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.activities.ChallengeDetailActivity;
+import com.slashmobility.bottleflip_android.activities.ChallengeReviewActivity;
 import com.slashmobility.bottleflip_android.activities.ChallengesActivity;
 import com.slashmobility.bottleflip_android.model.Challenge;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
@@ -66,6 +67,7 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.Chal
                         Bundle bundle = new Bundle();
                         bundle.putInt("positionChallenge", position);
                         ((ChallengesActivity)mContext).openActivity(ChallengeDetailActivity.class, bundle);
+                        //((ChallengesActivity)mContext).openActivity(ChallengeReviewActivity.class, bundle);
 
                     }
                 });

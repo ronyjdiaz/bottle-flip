@@ -1,0 +1,71 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.slashmobility.bottleflip_android.fragments.MyChallengeFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <fragment
+        android:name="com.google.android.youtube.player.YouTubePlayerFragment"
+        android:id="@+id/youtube_fragment"
+
+        android:layout_width="match_parent"
+        android:layout_height="250dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_big"
+
+        android:layout_below="@+id/youtube_fragment"
+        android:text="¡Has conseguido 9 puntos!"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:id="@+id/textviewChallengePoints"
+        android:layout_marginStart="@dimen/margin_big"
+        android:layout_marginEnd="@dimen/margin_xxsmall"
+        android:textSize="@dimen/text_size_xbig"
+        android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_xxsmall"
+            android:layout_marginBottom="@dimen/margin_big"
+            android:layout_below="@+id/textviewChallengePoints"
+            android:text="¡Has conseguido 9 puntos!"
+            android:textAlignment="center"
+            android:id="@+id/textviewTryNumber"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginEnd="@dimen/margin_xxsmall"
+            android:textSize="@dimen/text_size_normal"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnImproveChallenge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_lg_radius"
+            android:text="@string/improve_challenge"
+            android:textColor="@color/white"
+            android:layout_below="@+id/textviewTryNumber"
+            android:textSize="@dimen/text_size_xxnormal"></Button>
+
+    </RelativeLayout>
+    </ScrollView>
+
+</FrameLayout>

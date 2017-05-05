@@ -19,7 +19,7 @@ import butterknife.OnClick;
 
 public class ChallengesActivity extends BaseActivity {
 
-    @BindView(R.id.toolbar) Toolbar default_toolbar;
+    @BindView(R.id.toolbar) Toolbar mToolbar;
     @BindView(R.id.btn_reto) ImageButton btn_reto;
     @BindView(R.id.btn_ranking) ImageButton btn_ranking;
     @BindView(R.id.btn_perfil) ImageButton btn_perfil;
@@ -40,29 +40,29 @@ public class ChallengesActivity extends BaseActivity {
     }
 
     private void getViews(){
-        default_toolbar.setTitle(getResources().getString(R.string.title_challenge));
-        setSupportActionBar(default_toolbar);
+        mToolbar.setTitle(getResources().getString(R.string.title_challenge));
+        setSupportActionBar(mToolbar);
         changeToFragment( new ChallengesFragment() );
         changeColorBarNotification(R.color.green_start_challenges);
     }
 
     @OnClick(R.id.btn_reto)
     public void gotoReto(){
-        default_toolbar.setTitle(getResources().getString(R.string.title_challenge));
+        mToolbar.setTitle(getResources().getString(R.string.title_challenge));
         active_btn(TAG_1);
         changeToFragment( new ChallengesFragment() );
     }
 
     @OnClick(R.id.btn_ranking)
     public void gotoRanking(){
-        default_toolbar.setTitle(getResources().getString(R.string.title_ranking));
+        mToolbar.setTitle(getResources().getString(R.string.title_ranking));
         active_btn(TAG_2);
         changeToFragment( new RankingFragment() );
     }
 
     @OnClick(R.id.btn_perfil)
     public void gotoPerfil(){
-        default_toolbar.setTitle(getResources().getString(R.string.title_profile));
+        mToolbar.setTitle(getResources().getString(R.string.title_profile));
         active_btn(TAG_3);
         changeToFragment( new ProfileFragment() );
 

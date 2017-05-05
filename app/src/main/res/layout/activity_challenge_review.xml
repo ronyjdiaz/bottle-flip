@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_container"
+    tools:context="com.slashmobility.bottleflip_android.activities.ChallengeReviewActivity">
+
+    <include layout="@layout/toolbarlayout" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbarlayout"></include>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/frame_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbarlayout"
+        app:tabTextColor="#464545"
+        app:tabBackground="@color/green_end_challenges"
+        app:tabIndicatorColor="@color/white"
+        app:tabMode="fixed"
+
+        app:tabGravity="fill"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/frame_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_below="@+id/frame_tabs" />
+
+</RelativeLayout>
