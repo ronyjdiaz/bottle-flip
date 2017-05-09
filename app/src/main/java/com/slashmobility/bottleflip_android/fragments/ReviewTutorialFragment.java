@@ -17,6 +17,8 @@ import com.slashmobility.bottleflip_android.model.Challenge;
 import com.slashmobility.bottleflip_android.model.Rule;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 
+import java.util.HashMap;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -67,8 +69,9 @@ public class ReviewTutorialFragment extends BaseFragment implements YouTubePlaye
             challenge = SingletonSession.getInstance().getChallenges().get(mpositionChallenge);
             mtextviewChallengeName.setText(challenge.getName());
             mtextviewInstructionsChallenge.setText(challenge.getDescription());
-            for (Rule rule: challenge.getPoints())
+            for (Object obj : challenge.points.values())
             {
+                Rule rule = (Rule)obj;
                 mtextviewInstructionsChallenge.setText( mtextviewInstructionsChallenge.getText().toString() +  System.lineSeparator());
                 mtextviewInstructionsChallenge.setText(mtextviewInstructionsChallenge.getText().toString() + "-" + String.valueOf(rule.getValue()));
                 mtextviewInstructionsChallenge.setText(mtextviewInstructionsChallenge.getText().toString() + " " + rule.getTitle());

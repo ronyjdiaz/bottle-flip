@@ -1,6 +1,6 @@
 package com.slashmobility.bottleflip_android.model;
 
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * Created by rony_2 on 2/5/2017.
@@ -8,8 +8,11 @@ import java.util.List;
 
 public class Challenge {
 
-    List<TryUser> attemptsByUsers;
-    List<Rule> points;
+    //List<TryUser> attemptsByUsers;
+    //List<Rule> points;
+
+    public HashMap<String,Integer> attemptsByUsers;
+    public HashMap<String,Rule> points;
 
     private String created;
 
@@ -41,39 +44,34 @@ public class Challenge {
 
     public void setScore(int score) { this.score = score; }
 
-    private String videoURLDownload;
+    private String videoURL;
 
-    public String getVideoURLDownload() { return this.videoURLDownload; }
+    public String getVideoURL() { return this.videoURL; }
 
-    public void setVideoURLDownload(String videoURLDownload) { this.videoURLDownload = videoURLDownload; }
+    public void setVideoURL(String videoURL) { this.videoURL = videoURL; }
 
-    private String videoURLStorage;
+    public HashMap<String, Rule> getPoints() {
+        return points;
+    }
 
-    public String getVideoURLStorage() { return this.videoURLStorage; }
-
-    public void setVideoURLStorage(String videoURLStorage) { this.videoURLStorage = videoURLStorage; }
-
+    public void setPoints(HashMap<String, Rule> points) {
+        this.points = points;
+    }
 
     public Challenge() {
     }
 
-    public List<TryUser> getAttemptsByUsers() {
+
+    public HashMap<String, Integer> getAttemptsByUsers() {
         return attemptsByUsers;
     }
 
-    public void setAttemptsByUsers(List<TryUser> attemptsByUsers) {
+    public void setAttemptsByUsers(HashMap<String, Integer> attemptsByUsers) {
         this.attemptsByUsers = attemptsByUsers;
     }
 
-    public List<Rule> getPoints() {
-        return points;
-    }
 
-    public void setPoints(List<Rule> points) {
-        this.points = points;
-    }
-
-    public Challenge(List<TryUser> attemptsByUsers, List<Rule> points, String created, String description, int level, String name, int score, String videoURLDownload, String videoURLStorage) {
+    public Challenge(HashMap<String, Integer> attemptsByUsers, HashMap<String, Rule> points, String created, String description, int level, String name, int score, String videoURL) {
         this.attemptsByUsers = attemptsByUsers;
         this.points = points;
         this.created = created;
@@ -81,7 +79,6 @@ public class Challenge {
         this.level = level;
         this.name = name;
         this.score = score;
-        this.videoURLDownload = videoURLDownload;
-        this.videoURLStorage = videoURLStorage;
+        this.videoURL = videoURL;
     }
 }

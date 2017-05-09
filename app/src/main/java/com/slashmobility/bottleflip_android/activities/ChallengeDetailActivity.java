@@ -98,8 +98,9 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
             mtoolbarTitle.setText(getString(R.string.challenge) + " " + String.valueOf(challenge.getLevel()));//Challenge name
             mtextviewChallengeName.setText(challenge.getName());
             mtextviewInstructionsChallenge.setText(challenge.getDescription());
-            for (Rule rule: challenge.getPoints())
+            for (Object obj : challenge.points.values())
             {
+                Rule rule = (Rule)obj;
                 mtextviewInstructionsChallenge.setText( mtextviewInstructionsChallenge.getText().toString() +  System.lineSeparator());
                 mtextviewInstructionsChallenge.setText(mtextviewInstructionsChallenge.getText().toString() + "-" + String.valueOf(rule.getValue()));
                 mtextviewInstructionsChallenge.setText(mtextviewInstructionsChallenge.getText().toString() + " " + rule.getTitle());
