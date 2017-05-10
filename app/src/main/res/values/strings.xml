@@ -58,6 +58,9 @@
     <string name="text_title_register">COMPLETA TU CUENTA</string>
     <string name="text_register_subtitle">Introduce el código que tienes en tu set de stickers:</string>
     <string name="text_uncode">Continuar sin código</string>
+    <string name="error_register">Ha ocurrido un error durante el registro, por favor intente nuevamente.</string>
+    <string name="bottle_code_invalid">El código de la botella es inválido</string>
+
 
     <!--Challenge -->
     <string name="title_challenge">Retos</string>

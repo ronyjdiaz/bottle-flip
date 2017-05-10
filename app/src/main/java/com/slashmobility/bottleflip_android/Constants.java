@@ -17,6 +17,7 @@ public class Constants {
     public static final String VIDEO_NAME = "challenge_video.mp4";
     public static final String DCIM = "/dcim/";
     public final static String YOUTUBE_URL = "http://www.youtube.com/watch?v=";
+    public final static String PROVIDER_EMAIL = "Email/Password";
 
 
 }
