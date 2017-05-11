@@ -14,8 +14,10 @@ import butterknife.OnClick;
 public class WelcomeActivity extends BaseActivity {
 
 
-    @BindView(R.id.btnLogin)Button btnLogin;
-    @BindView(R.id.btnRegister)Button btnRegister;
+    @BindView(R.id.btnLogin)
+    Button btnLogin;
+    @BindView(R.id.btnRegister)
+    Button btnRegister;
 
 
     @Override
@@ -26,7 +28,7 @@ public class WelcomeActivity extends BaseActivity {
         initView();
     }
 
-    private void initView(){
+    private void initView() {
         Utils.changeColorDrawable(btnLogin, WelcomeActivity.this, R.color.white);
         Utils.changeStrokeColorDrawable(btnLogin, WelcomeActivity.this, 3, R.color.black);
         Utils.changeColorDrawable(btnRegister, WelcomeActivity.this, R.color.black);
@@ -34,12 +36,12 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     @OnClick(R.id.btnLogin)
-    protected void gotoLogin(){
+    protected void gotoLogin() {
         openActivity(LoginActivity.class);
     }
 
     @OnClick(R.id.btnRegister)
-    protected void gotoRegister(){
+    protected void gotoRegister() {
         openActivity(RegisterActivity.class);
 
     }

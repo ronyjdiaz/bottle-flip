@@ -18,6 +18,11 @@ public class Constants {
     public static final String DCIM = "/dcim/";
     public final static String YOUTUBE_URL = "http://www.youtube.com/watch?v=";
     public final static String PROVIDER_EMAIL = "Email/Password";
+    public final static String ISHELP = "isHelp";
+    public final static  int ALPHA100 = 255;
+    public final static int ALPHA50 = 128;
+    public final static String LINK_APP = "https://play.google.com/store/apps/details?id=com.flaregames.nskchuck";
+    public static final String VIDEO_URI = "VideoUri";
 
 
 }

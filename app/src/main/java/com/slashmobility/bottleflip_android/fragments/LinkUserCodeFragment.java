@@ -3,7 +3,6 @@ package com.slashmobility.bottleflip_android.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -30,16 +29,22 @@ import butterknife.OnClick;
  */
 public class LinkUserCodeFragment extends BaseFragment {
 
-    @BindView(R.id.toolbar)Toolbar mToolbar;
-    @BindView(R.id.toolbarTitle)TextView mtoolbarTitle;
-    @BindView(R.id.edittextUser)EditText medittextUsername;
-    @BindView(R.id.edittextPassword)EditText medittextPassword;
-    @BindView(R.id.edittextEmail)EditText medittextEmail;
-    @BindView(R.id.btnRegister)Button mbtnRegister;
-    @BindView(R.id.btnRegisterFacebook)Button mbtnRegisterFacebook;
-    @BindView(R.id.imageviewBackButton)ImageView mimageviewBackButton;
-
-
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.toolbarTitle)
+    TextView mtoolbarTitle;
+    @BindView(R.id.edittextUser)
+    EditText medittextUsername;
+    @BindView(R.id.edittextPassword)
+    EditText medittextPassword;
+    @BindView(R.id.edittextEmail)
+    EditText medittextEmail;
+    @BindView(R.id.btnRegister)
+    Button mbtnRegister;
+    @BindView(R.id.btnRegisterFacebook)
+    Button mbtnRegisterFacebook;
+    @BindView(R.id.imageviewBackButton)
+    ImageView mimageviewBackButton;
 
 
     public LinkUserCodeFragment() {
@@ -54,36 +59,33 @@ public class LinkUserCodeFragment extends BaseFragment {
         View v = inflater.inflate(R.layout.fragment_link_user_code, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        ButterKnife.bind(this,v);
-         configViews();
+        ButterKnife.bind(this, v);
+        configViews();
         return v;
 
     }
 
-    private void configViews(){
+    private void configViews() {
         Utils.changeColorDrawable(mbtnRegister, this.getContext(), R.color.color_bar_perfil);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         mtoolbarTitle.setText(getString(R.string.text_link));
         mToolbar.setBackgroundResource(R.color.color_bar_perfil);
         mimageviewBackButton.setVisibility(View.VISIBLE);
-        ((LinkBottleActivity)getActivity()).changeColorBarNotification(R.color.color_bar_perfil);
+        ((LinkBottleActivity) getActivity()).changeColorBarNotification(R.color.color_bar_perfil);
     }
 
     //edittextUsername, edittextPassword
-    private boolean isValidateLogin(){
-        if(!Utils.validEmail(medittextEmail.getText().toString()))
-        {
+    private boolean isValidateLogin() {
+        if (!Utils.validEmail(medittextEmail.getText().toString())) {
             showMessageDialog(getResources().getString(R.string.invalid_email));
             return false;
         }
-        if(TextUtils.isEmpty(medittextPassword.getText().toString()))
-        {
+        if (TextUtils.isEmpty(medittextPassword.getText().toString())) {
             showMessageDialog(getResources().getString(R.string.pass_required));
             return false;
         }
 
-        if(TextUtils.isEmpty(medittextUsername.getText().toString()))
-        {
+        if (TextUtils.isEmpty(medittextUsername.getText().toString())) {
             showMessageDialog(getResources().getString(R.string.username_required));
             return false;
         }
@@ -92,24 +94,19 @@ public class LinkUserCodeFragment extends BaseFragment {
     }
 
     @OnClick(R.id.btnRegister)
-    protected void register(){
-        if(isValidateLogin()){
-            Toast.makeText(getActivity(), "Registrando...", Toast.LENGTH_SHORT).show();
+    protected void register() {
+        if (isValidateLogin()) {
+            Toast.makeText(getActivity(), getString(R.string.registering), Toast.LENGTH_SHORT).show();
         }
 
     }
 
     @OnClick(R.id.imageviewBackButton)
-    protected void back(){
+    protected void back() {
 
         getActivity().getSupportFragmentManager().popBackStack();
 
     }
-
-
-
-
-
 
 
 }

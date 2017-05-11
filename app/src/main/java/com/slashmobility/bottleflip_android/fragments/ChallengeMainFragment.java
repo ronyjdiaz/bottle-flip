@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerFragment;
-import com.slashmobility.bottleflip_android.Constants;
 import com.slashmobility.bottleflip_android.R;
 
 /**
@@ -27,7 +25,7 @@ public class ChallengeMainFragment extends BaseFragment implements YouTubePlayer
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_challenge_main, container, false);
+        View v = inflater.inflate(R.layout.fragment_challenge_main, container, false);
 
 
         return v;

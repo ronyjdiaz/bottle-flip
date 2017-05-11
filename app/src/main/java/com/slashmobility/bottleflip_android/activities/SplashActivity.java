@@ -1,39 +1,42 @@
 package com.slashmobility.bottleflip_android.activities;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-
 
 import com.slashmobility.bottleflip_android.Constants;
 import com.slashmobility.bottleflip_android.R;
+import com.slashmobility.bottleflip_android.utils.PreferenceManager;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class SplashActivity extends BaseActivity {
-    // Set the duration of the splash screen
 
+
+    private PreferenceManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        initListeners();
+        prefManager = new PreferenceManager(this);
+        initTimer();
     }
 
-    private void initListeners(){
+    private void initTimer() {
 
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
 
                 // Start the next activity
-
-                openActivity(OnboardingActivity.class);
-                // Close the activity so the user won't able to go back this
-                // activity pressing Back button
                 finish();
+                if (prefManager.isFirstTimeLaunch()) {
+                    openActivity(OnboardingActivity.class);
+                } else {
+                    openActivity(WelcomeActivity.class);
+                }
+
+
             }
         };
         // Simulate a long loading process on application startup.

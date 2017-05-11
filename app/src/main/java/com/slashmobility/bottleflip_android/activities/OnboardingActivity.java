@@ -1,7 +1,6 @@
 package com.slashmobility.bottleflip_android.activities;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
@@ -9,6 +8,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.slashmobility.bottleflip_android.Constants;
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.adapters.OnboardingAdapter;
 import com.slashmobility.bottleflip_android.utils.PreferenceManager;
@@ -26,10 +26,14 @@ import butterknife.OnPageChange;
 public class OnboardingActivity extends BaseActivity {
 
 
-    @BindView(R.id.pager_slider) ViewPager viewPager;
-    @BindView(R.id.layoutDots) LinearLayout dotsLayout;
-    @BindView(R.id.btn_next) Button btnNext;
-    @BindView(R.id.btn_skip) TextView btnSkip;
+    @BindView(R.id.pager_slider)
+    ViewPager viewPager;
+    @BindView(R.id.layoutDots)
+    LinearLayout dotsLayout;
+    @BindView(R.id.btn_next)
+    Button btnNext;
+    @BindView(R.id.btn_skip)
+    TextView btnSkip;
 
     private OnboardingAdapter onboardingViewPagerAdapter;
     private TextView[] dots;
@@ -38,64 +42,65 @@ public class OnboardingActivity extends BaseActivity {
     private int[] colorsActive, colorsInactive;
     private static final int[] COLOR_BUTTON = {R.color.dot_light_screen1, R.color.dot_light_screen2, R.color.dot_light_screen3};
     private ViewPager.OnPageChangeListener viewPagerPageChangeListener;
+    private boolean isHelp = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         prefManager = new PreferenceManager(this);
-
-        if(!getIntent().hasExtra("isHelp")){
-            if (!prefManager.isFirstTimeLaunch()) {
-                gotoWelcome();
-                finish();
-            }
-        }
-
+        isHelp = getIntent().hasExtra(Constants.ISHELP);
 
         setContentView(R.layout.activity_onboarding);
         ButterKnife.bind(this);
-        getViews();
+        configViews();
         loadSlider();
     }
 
-    private void getViews(){
+    private void configViews() {
         Utils.changeColorDrawable(btnNext, OnboardingActivity.this, COLOR_BUTTON[0]);
         addBottomDots(0);
     }
 
-    private void loadSlider(){
+    private void loadSlider() {
         onboardingViewPagerAdapter = new OnboardingAdapter(this);
         viewPager.setAdapter(onboardingViewPagerAdapter);
     }
 
     @OnClick(R.id.btn_skip)
-    protected void gotoWelcome(){
-        prefManager.setFirstTimeLaunch(false);
-        if(!getIntent().hasExtra("isHelp"))
-        {
-            openActivity(WelcomeActivity.class);
-        }
-        finish();
+    protected void clickSkip() {
+        if (!isHelp) {
+            finish();
+            gotoWelcome();
+        } else
+            finish();
+    }
 
+
+    protected void gotoWelcome() {
+        prefManager.setFirstTimeLaunch(false);
+        openActivity(WelcomeActivity.class);
     }
 
     @OnClick(R.id.btn_next)
-    protected void gotoNext(){
+    protected void gotoNext() {
         int current = getItem(+1);
         if (current < LAYOUTS) {
             Utils.changeColorDrawable(btnNext, OnboardingActivity.this, COLOR_BUTTON[current]);
             // move to next screen
             viewPager.setCurrentItem(current);
         } else {
-            if(!getIntent().hasExtra("isHelp"))
+            if (!isHelp) {
+                finish();
                 gotoWelcome();
-            finish();
+            } else
+                finish();
+
         }
     }
 
     @OnPageChange(value = R.id.pager_slider, callback = OnPageChange.Callback.PAGE_SELECTED)
-    protected void pageSelected(int position){
+    protected void pageSelected(int position) {
         addBottomDots(position);
         Utils.changeColorDrawable(btnNext, OnboardingActivity.this, COLOR_BUTTON[position]);
     }
@@ -122,7 +127,6 @@ public class OnboardingActivity extends BaseActivity {
     private int getItem(int i) {
         return viewPager.getCurrentItem() + i;
     }
-
 
 
 }

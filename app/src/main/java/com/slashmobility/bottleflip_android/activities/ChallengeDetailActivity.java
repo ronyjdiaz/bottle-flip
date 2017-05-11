@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +24,6 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.slashmobility.bottleflip_android.Constants;
 import com.slashmobility.bottleflip_android.R;
-import com.slashmobility.bottleflip_android.fragments.RegisterOptionsFragment;
 import com.slashmobility.bottleflip_android.model.Challenge;
 import com.slashmobility.bottleflip_android.model.Rule;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
@@ -40,19 +38,25 @@ import butterknife.OnClick;
 
 public class ChallengeDetailActivity extends BaseActivity implements YouTubePlayer.OnInitializedListener {
 
-    @BindView(R.id.toolbar)Toolbar mToolbar;
-    @BindView(R.id.toolbarTitle)TextView mtoolbarTitle;
-    @BindView(R.id.btnAccept)Button mbtnAccept;
-    @BindView(R.id.textviewChallengeName)TextView mtextviewChallengeName;
-    @BindView(R.id.textviewInstructionsChallenge)TextView mtextviewInstructionsChallenge;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.toolbarTitle)
+    TextView mtoolbarTitle;
+    @BindView(R.id.btnAccept)
+    Button mbtnAccept;
+    @BindView(R.id.textviewChallengeName)
+    TextView mtextviewChallengeName;
+    @BindView(R.id.textviewInstructionsChallenge)
+    TextView mtextviewInstructionsChallenge;
     private static final int VIDEO_CAPTURE = 101;
     private String mCurrentVideoPath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge_detail);
         ButterKnife.bind(this);
-       // changeToFragment(new ChallengeMainFragment());
+        // changeToFragment(new ChallengeMainFragment());
         YouTubePlayerFragment youTubePlayerFragment =
                 (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_fragment);
 
@@ -60,11 +64,9 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
         configViews();
         configPermissions();
         setData();
-
-
     }
 
-    private void configPermissions(){
+    private void configPermissions() {
 
         Dexter.withActivity(this)
                 .withPermissions(
@@ -72,13 +74,16 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE
                 ).withListener(new MultiplePermissionsListener() {
-            @Override public void onPermissionsChecked(MultiplePermissionsReport report) {/* ... */}
-            @Override public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
+            @Override
+            public void onPermissionsChecked(MultiplePermissionsReport report) {/* ... */}
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
         }).check();
 
     }
 
-    private void configViews(){
+    private void configViews() {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -88,25 +93,22 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
         Utils.changeColorDrawable(mbtnAccept, this, R.color.light_green_challenges);
     }
 
-    private void setData(){
+    private void setData() {
 
-        Bundle bundle =  getIntent().getExtras();
+        Bundle bundle = getIntent().getExtras();
         Challenge challenge;
-        int mpositionChallenge = bundle.getInt("positionChallenge",-1);
-        if(mpositionChallenge>=0){
+        int mpositionChallenge = bundle.getInt("positionChallenge", -1);
+        if (mpositionChallenge >= 0) {
             challenge = SingletonSession.getInstance().getChallenges().get(mpositionChallenge);
             mtoolbarTitle.setText(getString(R.string.challenge) + " " + String.valueOf(challenge.getLevel()));//Challenge name
             mtextviewChallengeName.setText(challenge.getName());
             mtextviewInstructionsChallenge.setText(challenge.getDescription());
-            for (Object obj : challenge.points.values())
-            {
-                Rule rule = (Rule)obj;
-                mtextviewInstructionsChallenge.setText( mtextviewInstructionsChallenge.getText().toString() +  System.lineSeparator());
+            for (Object obj : challenge.points.values()) {
+                Rule rule = (Rule) obj;
+                mtextviewInstructionsChallenge.setText(mtextviewInstructionsChallenge.getText().toString() + System.lineSeparator());
                 mtextviewInstructionsChallenge.setText(mtextviewInstructionsChallenge.getText().toString() + "-" + String.valueOf(rule.getValue()));
                 mtextviewInstructionsChallenge.setText(mtextviewInstructionsChallenge.getText().toString() + " " + rule.getTitle());
-
             }
-
         }
 
 
@@ -121,30 +123,26 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-       getFragmentManager().findFragmentById(R.id.youtube_fragment);
+        getFragmentManager().findFragmentById(R.id.youtube_fragment);
     }
 
     @OnClick(R.id.btnAccept)
     protected void doChallenge() {
-        if(!SingletonSession.getInstance().getBottleCode().equals(""))
-        {
-            if(hasCamera()){
+        if (!SingletonSession.getInstance().getBottleCode().equals("")) {
+            if (hasCamera()) {
 
                 File mediaFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                                + Constants.DCIM + getAlbumName() + "/"+Constants.VIDEO_NAME);
+                        + Constants.DCIM + getAlbumName() + "/" + Constants.VIDEO_NAME);
                 mCurrentVideoPath = "file://" + mediaFile.getAbsolutePath();
                 Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                 Uri videoUri = Uri.fromFile(mediaFile);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, videoUri);
                 startActivityForResult(intent, VIDEO_CAPTURE);
 
-            }
-            else{
+            } else {
                 showMessageDialog(getString(R.string.no_camera));
             }
-        }
-        else
-        {
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.alert_no_code)
                     .setTitle(R.string.need_bottle);
@@ -163,9 +161,10 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
             dialog.show();
         }
     }
+
     private boolean hasCamera() {
         if (getPackageManager().hasSystemFeature(
-                PackageManager.FEATURE_CAMERA_ANY)){
+                PackageManager.FEATURE_CAMERA_ANY)) {
             return true;
         } else {
             return false;
@@ -179,14 +178,14 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
             if (resultCode == RESULT_OK) {
                 //Toast.makeText(this, "Video saved to:\n" +data.getData(), Toast.LENGTH_LONG).show();
                 Bundle bundle = new Bundle();
-               // mCurrentVideoPath = data.getDataString();
-                bundle.putString("VideoUri",mCurrentVideoPath);
-                openActivity(VideoPlayerActivity.class,bundle);
+                // mCurrentVideoPath = data.getDataString();
+                bundle.putString("VideoUri", mCurrentVideoPath);
+                openActivity(VideoPlayerActivity.class, bundle);
 
             } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, getString(R.string.cancel_record),Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.cancel_record), Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, getString(R.string.error_recording),Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.error_recording), Toast.LENGTH_LONG).show();
             }
         }
 

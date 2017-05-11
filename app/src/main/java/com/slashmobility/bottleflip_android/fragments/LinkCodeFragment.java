@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.activities.LinkBottleActivity;
-import com.slashmobility.bottleflip_android.activities.LoginActivity;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 import com.slashmobility.bottleflip_android.utils.Utils;
 
@@ -30,11 +29,17 @@ import butterknife.OnClick;
  */
 public class LinkCodeFragment extends BaseFragment {
 
-    @BindView(R.id.btnContinue)Button mbtnContinue;
-    @BindView(R.id.edittextBottleCode)EditText medittextBottleCode;
-    @BindView(R.id.toolbar)Toolbar mToolbar;
-    @BindView(R.id.toolbarTitle)TextView mtoolbarTitle;
-    @BindView(R.id.imageviewBackButton)ImageView mimageviewBackButton;
+    @BindView(R.id.btnContinue)
+    Button mbtnContinue;
+    @BindView(R.id.edittextBottleCode)
+    EditText medittextBottleCode;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.toolbarTitle)
+    TextView mtoolbarTitle;
+    @BindView(R.id.imageviewBackButton)
+    ImageView mimageviewBackButton;
+
     public LinkCodeFragment() {
         // Required empty public constructor
     }
@@ -47,45 +52,40 @@ public class LinkCodeFragment extends BaseFragment {
         View v = inflater.inflate(R.layout.fragment_link_code, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        ButterKnife.bind(this,v);
+        ButterKnife.bind(this, v);
         configViews();
 
         return v;
     }
 
-    private void configViews(){
+    private void configViews() {
         Utils.changeColorDrawable(mbtnContinue, this.getContext(), R.color.color_bar_perfil);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
         mtoolbarTitle.setText(getString(R.string.text_link));
         mToolbar.setBackgroundResource(R.color.color_bar_perfil);
         mimageviewBackButton.setVisibility(View.VISIBLE);
-        ((LinkBottleActivity)getActivity()).changeColorBarNotification(R.color.color_bar_perfil);
+        ((LinkBottleActivity) getActivity()).changeColorBarNotification(R.color.color_bar_perfil);
     }
 
     @OnClick(R.id.btnContinue)
-    protected void continueClick(){
+    protected void continueClick() {
 
-        if(TextUtils.isEmpty(medittextBottleCode.getText()) == false)
-        {
+        if (TextUtils.isEmpty(medittextBottleCode.getText()) == false) {
             SingletonSession.getInstance().setBottleCode(medittextBottleCode.getText().toString());
             changeToFragment(new LinkUserCodeFragment());
 
-        }
-        else
-        {
+        } else {
             showMessageDialog(getResources().getString(R.string.bottle_code_required));
-            return ;
+            return;
         }
-
 
 
     }
+
     @OnClick(R.id.imageviewBackButton)
-    protected void back(){
+    protected void back() {
         getActivity().finish();
     }
-
-
 
 
 }

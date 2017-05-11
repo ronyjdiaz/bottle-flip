@@ -33,7 +33,7 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.Chal
     private Context mContext;
     private ArrayList<Challenge> mChallenges;
 
-    public ChallengeAdapter(Context mContext, ArrayList<Challenge> mChallenges){
+    public ChallengeAdapter(Context mContext, ArrayList<Challenge> mChallenges) {
         this.mChallenges = mChallenges;
         this.mContext = mContext;
     }
@@ -54,11 +54,9 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.Chal
         holder.textviewChallengeNumber.setText(mContext.getString(R.string.challenge) + " " + String.valueOf(challengeItem.getLevel()));
         holder.imageIconLocked.setVisibility(View.GONE);
 
-        if(!SingletonSession.getInstance().getBottleCode().equals(""))
-        {
+        if (!SingletonSession.getInstance().getBottleCode().equals("")) {
 
-            if(SingletonSession.getInstance().getScore()>=challengeItem.getScore())
-            {
+            if (SingletonSession.getInstance().getScore() >= challengeItem.getScore()) {
                 holder.textviewChallengePoints.setText(String.valueOf(challengeItem.getScore()) + " " + mContext.getString(R.string.pts));
                 holder.linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -66,22 +64,18 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.Chal
 
                         Bundle bundle = new Bundle();
                         bundle.putInt("positionChallenge", position);
-                        ((ChallengesActivity)mContext).openActivity(ChallengeDetailActivity.class, bundle);
+                        ((ChallengesActivity) mContext).openActivity(ChallengeDetailActivity.class, bundle);
                         //((ChallengesActivity)mContext).openActivity(ChallengeReviewActivity.class, bundle);
 
                     }
                 });
-            }
-            else
-            {
+            } else {
                 holder.imageIconChallenge.setImageResource(R.drawable.ic_reto_default);
                 holder.imageIconLocked.setVisibility(View.VISIBLE);
                 holder.textviewChallengePoints.setVisibility(View.GONE);
 
             }
-        }
-        else
-        {
+        } else {
             holder.imageIconChallenge.setImageResource(R.drawable.ic_reto_default);
             holder.linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,16 +83,11 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.Chal
 
                     Bundle bundle = new Bundle();
                     bundle.putInt("positionChallenge", position);
-                    ((ChallengesActivity)mContext).openActivity(ChallengeDetailActivity.class, bundle);
+                    ((ChallengesActivity) mContext).openActivity(ChallengeDetailActivity.class, bundle);
 
                 }
             });
         }
-
-
-
-
-
 
 
     }
@@ -110,24 +99,30 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.Chal
         return mChallenges.size();
     }
 
-    public static class ChallengeViewHolder extends RecyclerView.ViewHolder{
+    public static class ChallengeViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.textviewChallengeName) TextView textviewChallengeName;
-        @BindView(R.id.textviewChallengePoints) TextView textviewChallengePoints;
-        @BindView(R.id.textviewChallengeNumber) TextView textviewChallengeNumber;
-        @BindView(R.id.layoutMain) LinearLayout linearLayout;
-        @BindView(R.id.imageIconChallenge)ImageView imageIconChallenge;
-        @BindView(R.id.imageIconLocked) ImageView imageIconLocked;
+        @BindView(R.id.textviewChallengeName)
+        TextView textviewChallengeName;
+        @BindView(R.id.textviewChallengePoints)
+        TextView textviewChallengePoints;
+        @BindView(R.id.textviewChallengeNumber)
+        TextView textviewChallengeNumber;
+        @BindView(R.id.layoutMain)
+        LinearLayout linearLayout;
+        @BindView(R.id.imageIconChallenge)
+        ImageView imageIconChallenge;
+        @BindView(R.id.imageIconLocked)
+        ImageView imageIconLocked;
 
         View itemView;
-        ChallengeViewHolder(View itemView){
+
+        ChallengeViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             this.itemView = itemView;
 
         }
     }
-
 
 
     @Override

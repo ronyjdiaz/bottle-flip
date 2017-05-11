@@ -1,6 +1,5 @@
 package com.slashmobility.bottleflip_android.activities;
 
-import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,29 +8,30 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.utils.Utils;
 
-import java.io.File;
+import net.protyposis.android.mediaplayer.MediaPlayer;
+import net.protyposis.android.mediaplayer.MediaSource;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import net.protyposis.android.mediaplayer.MediaPlayer;
-import net.protyposis.android.mediaplayer.MediaSource;
-import net.protyposis.android.mediaplayer.VideoView;
 
-public class VideoPlayerActivity extends BaseActivity  {
+import static com.slashmobility.bottleflip_android.Constants.VIDEO_URI;
 
-    @BindView(R.id.toolbar) Toolbar mToolbar;
-    @BindView(R.id.toolbarTitle)TextView mtoolbarTitle;
-    @BindView(R.id.vv) net.protyposis.android.mediaplayer.VideoView mVideoView;
+public class VideoPlayerActivity extends BaseActivity {
+
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.toolbarTitle)
+    TextView mtoolbarTitle;
+    @BindView(R.id.vv)
+    net.protyposis.android.mediaplayer.VideoView mVideoView;
 
     private String uriVideo;
 
@@ -61,9 +61,8 @@ public class VideoPlayerActivity extends BaseActivity  {
         mVideoPlaybackSpeed = 1;
         mVideoPlaying = false;
         //mVideoUri = getIntent().getData();
-        if(getIntent().hasExtra("VideoUri"))
-        {
-            mVideoUri = Uri.parse( getIntent().getExtras().getString("VideoUri"));
+        if (getIntent().hasExtra(VIDEO_URI)) {
+            mVideoUri = Uri.parse(getIntent().getExtras().getString(VIDEO_URI));
 
         }
 
@@ -92,7 +91,7 @@ public class VideoPlayerActivity extends BaseActivity  {
         }
     }
 
-    private void configViews(){
+    private void configViews() {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -114,7 +113,7 @@ public class VideoPlayerActivity extends BaseActivity  {
     @Override
     protected void onResume() {
         super.onResume();
-        if(!mVideoView.isPlaying()) {
+        if (!mVideoView.isPlaying()) {
             initPlayer();
         }
     }
@@ -166,7 +165,7 @@ public class VideoPlayerActivity extends BaseActivity  {
             @Override
             public void onSeek(MediaPlayer mp) {
                 Log.d(TAG, "onSeek");
-               // mProgress.setVisibility(View.VISIBLE);
+                // mProgress.setVisibility(View.VISIBLE);
             }
         });
         mVideoView.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
@@ -198,10 +197,10 @@ public class VideoPlayerActivity extends BaseActivity  {
 
                     @Override
                     public void onException(Exception e) {
-                        Log.e(TAG, "error loading video", e);
+                        Log.e(TAG, getString(R.string.error_loading_video), e);
                     }
                 };
-        if(mMediaSource == null) {
+        if (mMediaSource == null) {
             // Convert uri to media source asynchronously to avoid UI blocking
             // It could take a while, e.g. if it's a DASH source and needs to be preprocessed
             Utils.uriToMediaSourceAsync(this, mVideoUri, mMediaSourceAsyncCallbackHandler);
@@ -243,7 +242,6 @@ public class VideoPlayerActivity extends BaseActivity  {
             outState.putBoolean("playing", mVideoPlaying);
         }
     }
-
 
 
 }

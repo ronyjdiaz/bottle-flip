@@ -1,4 +1,4 @@
-package com.slashmobility.bottleflip_android.services;
+package com.slashmobility.bottleflip_android.services.fcm;
 
 import android.app.Notification;
 import android.app.PendingIntent;

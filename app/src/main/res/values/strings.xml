@@ -60,6 +60,10 @@
     <string name="text_uncode">Continuar sin código</string>
     <string name="error_register">Ha ocurrido un error durante el registro, por favor intente nuevamente.</string>
     <string name="bottle_code_invalid">El código de la botella es inválido</string>
+    <string name="fail_authentication">Ha ocurrido un error en la autenticación</string>
+    <string name="registering">Registrando...</string>
+
+
 
 
     <!--Challenge -->
@@ -80,6 +84,11 @@
     <string name="tutorial">TUTORIAL</string>
     <string name="my_challenge">MI RETO</string>
     <string name="improve_challenge">MEJORAR RETO</string>
+    <string name="share_recomendation">Permítanme recomendaros esta aplicación</string>
+    <string name="choose_one">Escoge uno</string>
+    <string name="error_loading_video">Error cargando el video.</string>
+
+
 
 
     <!-- Perfil -->
@@ -97,7 +106,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_user_label">CREA TU USUARIO:</string>
     <string name="link_user_instruction">Registra el código con un usuario y podrás empezar a competir!</string>
-
 
     <!-- MENU -->
     <string name="menu_apply">APLICAR</string>

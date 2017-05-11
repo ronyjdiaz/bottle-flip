@@ -25,7 +25,8 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.RankingV
 
     private Context mContext;
     private ArrayList<Score> scoreList;
-    public RankingAdapter(Context mContext, ArrayList<Score> scoreList){
+
+    public RankingAdapter(Context mContext, ArrayList<Score> scoreList) {
         this.scoreList = scoreList;
         this.mContext = mContext;
 
@@ -43,7 +44,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.RankingV
         Score scoreItem = scoreList.get(position);
         holder.mtvNumber.setText(++position + "º");
         holder.mtvName.setText(scoreItem.getDisplayName());
-        holder.mtvPoint.setText(String.valueOf(scoreItem.getScore()) +" "+mContext.getString(R.string.pts) );
+        holder.mtvPoint.setText(String.valueOf(scoreItem.getScore()) + " " + mContext.getString(R.string.pts));
 
         Log.e("item", "" + position);
     }
@@ -53,12 +54,16 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.RankingV
         return scoreList.size();
     }
 
-    public static class RankingViewHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.textviewPosition) TextView mtvNumber;
-        @BindView(R.id.textviewName) TextView mtvName;
-        @BindView(R.id.textviewPoints) TextView mtvPoint;
+    public static class RankingViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.textviewPosition)
+        TextView mtvNumber;
+        @BindView(R.id.textviewName)
+        TextView mtvName;
+        @BindView(R.id.textviewPoints)
+        TextView mtvPoint;
         View itemView;
-        RankingViewHolder(View itemView){
+
+        RankingViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             this.itemView = itemView;
@@ -69,7 +74,6 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.RankingV
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
-
 
 
 }

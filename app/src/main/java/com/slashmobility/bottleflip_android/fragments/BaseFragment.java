@@ -15,7 +15,6 @@ import com.slashmobility.bottleflip_android.utils.BaseUtils;
 
 
 /**
-
  * @author Rony Diaz
  * @version %I, %G
  * @since 1.0
@@ -43,6 +42,7 @@ public class BaseFragment extends Fragment {
 
     /**
      * Muestra un progress dialog que puede ser cancelable o no
+     *
      * @param cancelable
      */
     protected void showProgressDialog(boolean cancelable) {
@@ -95,6 +95,7 @@ public class BaseFragment extends Fragment {
 
     /**
      * Oculta el teclado del editText pasado por parámetro en caso de que esté abierto
+     *
      * @param editText
      */
     protected void hideKeyboard(EditText editText) {
@@ -103,15 +104,15 @@ public class BaseFragment extends Fragment {
 
 
     public void changeToFragment(Fragment fragment) {
-        if(fragment!=null){
+        if (fragment != null) {
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container,fragment);
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.addToBackStack("");
             fragmentTransaction.commit();
         }
     }
 
-    public void changeColorBarNotification(int color){
+    public void changeColorBarNotification(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getActivity().getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

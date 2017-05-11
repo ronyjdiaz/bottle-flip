@@ -1,4 +1,4 @@
-package com.slashmobility.bottleflip_android.services;
+package com.slashmobility.bottleflip_android.services.fcm;
 
 import android.content.Context;
 import android.content.SharedPreferences;

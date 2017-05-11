@@ -2,7 +2,6 @@ package com.slashmobility.bottleflip_android.fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,17 +16,19 @@ import com.slashmobility.bottleflip_android.model.Challenge;
 import com.slashmobility.bottleflip_android.model.Rule;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 
-import java.util.HashMap;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class ReviewTutorialFragment extends BaseFragment implements YouTubePlayer.OnInitializedListener {
-    @BindView(R.id.btnAccept)Button mbtnAccept;
-    @BindView(R.id.textviewChallengeName)TextView mtextviewChallengeName;
-    @BindView(R.id.textviewInstructionsChallenge)TextView mtextviewInstructionsChallenge;
-    @BindView(R.id.toolbar)Toolbar mToolbar;
+    @BindView(R.id.btnAccept)
+    Button mbtnAccept;
+    @BindView(R.id.textviewChallengeName)
+    TextView mtextviewChallengeName;
+    @BindView(R.id.textviewInstructionsChallenge)
+    TextView mtextviewInstructionsChallenge;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     private int mpositionChallenge;
 
@@ -35,12 +36,11 @@ public class ReviewTutorialFragment extends BaseFragment implements YouTubePlaye
         // Required empty public constructor
     }
 
-    public static ReviewTutorialFragment newInstance(int positionChallenge){
+    public static ReviewTutorialFragment newInstance(int positionChallenge) {
         ReviewTutorialFragment reviewTutorialFragment = new ReviewTutorialFragment();
         reviewTutorialFragment.mpositionChallenge = positionChallenge;
         return reviewTutorialFragment;
     }
-
 
 
     @Override
@@ -48,31 +48,30 @@ public class ReviewTutorialFragment extends BaseFragment implements YouTubePlaye
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_review_tutorial, container, false);
-        ButterKnife.bind(this,v);
+        ButterKnife.bind(this, v);
         configViews();
         setData();
         return v;
 
     }
 
-    private void configViews(){
+    private void configViews() {
         mbtnAccept.setVisibility(View.GONE);
         mToolbar.setVisibility(View.GONE);
 
     }
 
-    private void setData(){
+    private void setData() {
 
         Challenge challenge;
 
-        if(mpositionChallenge>=0){
+        if (mpositionChallenge >= 0) {
             challenge = SingletonSession.getInstance().getChallenges().get(mpositionChallenge);
             mtextviewChallengeName.setText(challenge.getName());
             mtextviewInstructionsChallenge.setText(challenge.getDescription());
-            for (Object obj : challenge.points.values())
-            {
-                Rule rule = (Rule)obj;
-                mtextviewInstructionsChallenge.setText( mtextviewInstructionsChallenge.getText().toString() +  System.lineSeparator());
+            for (Object obj : challenge.points.values()) {
+                Rule rule = (Rule) obj;
+                mtextviewInstructionsChallenge.setText(mtextviewInstructionsChallenge.getText().toString() + System.lineSeparator());
                 mtextviewInstructionsChallenge.setText(mtextviewInstructionsChallenge.getText().toString() + "-" + String.valueOf(rule.getValue()));
                 mtextviewInstructionsChallenge.setText(mtextviewInstructionsChallenge.getText().toString() + " " + rule.getTitle());
 

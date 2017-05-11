@@ -15,10 +15,11 @@ import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.activities.ChallengesActivity;
 import com.slashmobility.bottleflip_android.adapters.ChallengeAdapter;
 import com.slashmobility.bottleflip_android.model.Challenge;
+import com.slashmobility.bottleflip_android.services.ServiceManager;
+import com.slashmobility.bottleflip_android.services.callbacks.CallbackChallenge;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,12 +30,14 @@ import butterknife.ButterKnife;
 
 public class ChallengesFragment extends BaseFragment {
 
-    @BindView(R.id.rv_retos) RecyclerView rv_retos;
+    @BindView(R.id.rv_retos)
+    RecyclerView rv_retos;
     private ChallengeAdapter mAdapter;
     private View mView;
     private LinearLayoutManager mLinearLayoutManager;
 
-    public ChallengesFragment() {}
+    public ChallengesFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,38 +45,31 @@ public class ChallengesFragment extends BaseFragment {
         mView = inflater.inflate(R.layout.fragment_retos, container, false);
         ButterKnife.bind(this, mView);
         configViews();
-        initListeners();
+        getValues();
         return mView;
     }
 
-    private void initListeners(){
+    private void getValues() {
 
-        DatabaseReference database = ((ChallengesActivity)getActivity()).getDatabase();
-        database.child("challenges").addValueEventListener(new ValueEventListener() {
+
+        ServiceManager.getChallenges(new CallbackChallenge() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList challengesList = new ArrayList<>();
-                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-                    Challenge challenge = noteDataSnapshot.getValue(Challenge.class);
-                    challengesList.add(challenge);
+            public void onSuccess(ArrayList<Challenge> challenges) {
+                if (challenges.size() > 0) {
+                    mAdapter = new ChallengeAdapter(getActivity(), challenges);
+                    rv_retos.setAdapter(mAdapter);
+                    SingletonSession.getInstance().setChallenges(challenges);
                 }
-
-                SingletonSession.getInstance().setChallenges(challengesList);
-
-                mAdapter = new ChallengeAdapter(getActivity(),challengesList);
-                rv_retos.setAdapter(mAdapter);
-
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onError(int errorCode, String errorMessage) {
 
             }
-
         });
     }
 
-    private void configViews(){
+    private void configViews() {
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rv_retos.setLayoutManager(mLinearLayoutManager);

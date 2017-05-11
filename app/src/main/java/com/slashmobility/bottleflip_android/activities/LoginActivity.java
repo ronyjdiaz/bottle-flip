@@ -24,6 +24,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.slashmobility.bottleflip_android.Constants;
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 import com.slashmobility.bottleflip_android.utils.Utils;
@@ -39,12 +40,18 @@ public class LoginActivity extends BaseActivity {
     CallbackManager callbackManager;
     com.facebook.login.LoginManager fbLoginManager;
 
-    @BindView(R.id.btnFacebookLoginDummy)Button mbtnFacebookLoginDummy;
-    @BindView(R.id.btnFacebookLogin)Button mbtnFacebookLogin;
-    @BindView(R.id.btnLogin)Button mbtnLogin;
-    @BindView(R.id.edittextUsername)EditText medittextUsername;
-    @BindView(R.id.edittextPassword)EditText medittextPassword;
-    @BindView(R.id.textviewForgotPassword)TextView mtextviewForgotPassword;
+    @BindView(R.id.btnFacebookLoginDummy)
+    Button mbtnFacebookLoginDummy;
+    @BindView(R.id.btnFacebookLogin)
+    Button mbtnFacebookLogin;
+    @BindView(R.id.btnLogin)
+    Button mbtnLogin;
+    @BindView(R.id.edittextUsername)
+    EditText medittextUsername;
+    @BindView(R.id.edittextPassword)
+    EditText medittextPassword;
+    @BindView(R.id.textviewForgotPassword)
+    TextView mtextviewForgotPassword;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -59,12 +66,10 @@ public class LoginActivity extends BaseActivity {
 
         fbLoginManager = com.facebook.login.LoginManager.getInstance();
         callbackManager = CallbackManager.Factory.create();
-       // FirebaseApp.initializeApp(this);
+        // FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         configViews();
         initListeners();
-
-
 
 
     }
@@ -76,24 +81,23 @@ public class LoginActivity extends BaseActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void configViews(){
+    private void configViews() {
         Utils.changeColorDrawable(mbtnLogin, LoginActivity.this, R.color.white);
         changeColorBarNotification(R.color.light_orange);
         enableButtonLogin(false);
 
     }
 
-    private void enableButtonLogin(boolean enabled)
-    {
+    private void enableButtonLogin(boolean enabled) {
         mbtnLogin.setEnabled(enabled);
-        if(enabled)
-            mbtnLogin.getBackground().setAlpha(255);
+        if (enabled)
+            mbtnLogin.getBackground().setAlpha(Constants.ALPHA100);
         else
-            mbtnLogin.getBackground().setAlpha(128);
+            mbtnLogin.getBackground().setAlpha(Constants.ALPHA50);
 
     }
 
-    private void initListeners(){
+    private void initListeners() {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -123,10 +127,11 @@ public class LoginActivity extends BaseActivity {
             public void onCancel() {
 
             }
+
             @Override
             public void onError(FacebookException error) {
                 String mErrorMessage = getString(R.string.connection_error);
-                Toast.makeText(LoginActivity.this,mErrorMessage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, mErrorMessage, Toast.LENGTH_SHORT).show();
 
 
             }
@@ -140,10 +145,9 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(isValidateLogin(false)){
+                if (isValidateLogin(false)) {
                     enableButtonLogin(true);
-                }
-                else
+                } else
                     enableButtonLogin(false);
             }
 
@@ -154,19 +158,18 @@ public class LoginActivity extends BaseActivity {
         };
 
 
-
         medittextPassword.addTextChangedListener(textWatcher);
         medittextUsername.addTextChangedListener(textWatcher);
     }
 
     @OnClick(R.id.btnFacebookLogin)
-    protected void facebookLoginClick(){
+    protected void facebookLoginClick() {
         fbLoginManager.logInWithReadPermissions(LoginActivity.this, Arrays.asList("email", "public_profile", "user_birthday"));
     }
 
     @OnClick(R.id.btnLogin)
-    protected void loginClick(){
-        if(isValidateLogin(true)) {
+    protected void loginClick() {
+        if (isValidateLogin(true)) {
             Utils.hideSoftKeyboard(LoginActivity.this);
             String mEmail = medittextUsername.getText().toString();
             String mPassword = medittextPassword.getText().toString();
@@ -176,21 +179,19 @@ public class LoginActivity extends BaseActivity {
     }
 
     @OnClick(R.id.textviewForgotPassword)
-    protected void forgotPassword(){
+    protected void forgotPassword() {
         openActivity(RecoverPasswordActivity.class);
     }
 
     //edittextUsername, edittextPassword
-    private boolean isValidateLogin(boolean showAlert){
-        if(TextUtils.isEmpty(medittextUsername.getText().toString()))
-        {
-            if(showAlert)
+    private boolean isValidateLogin(boolean showAlert) {
+        if (TextUtils.isEmpty(medittextUsername.getText().toString())) {
+            if (showAlert)
                 showMessageDialog(getResources().getString(R.string.username_required));
             return false;
         }
-        if(TextUtils.isEmpty(medittextPassword.getText().toString()))
-        {
-            if(showAlert)
+        if (TextUtils.isEmpty(medittextPassword.getText().toString())) {
+            if (showAlert)
                 showMessageDialog(getResources().getString(R.string.pass_required));
             return false;
         }
@@ -207,12 +208,9 @@ public class LoginActivity extends BaseActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-
-
-
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(LoginActivity.this, R.string.fail_authentication,
                                     Toast.LENGTH_SHORT).show();
                             return;
                         }

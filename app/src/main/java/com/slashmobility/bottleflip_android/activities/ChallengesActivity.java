@@ -19,15 +19,23 @@ import butterknife.OnClick;
 
 public class ChallengesActivity extends BaseActivity {
 
-    @BindView(R.id.toolbar) Toolbar mToolbar;
-    @BindView(R.id.btn_reto) ImageButton btn_reto;
-    @BindView(R.id.btn_ranking) ImageButton btn_ranking;
-    @BindView(R.id.btn_perfil) ImageButton btn_perfil;
-    @BindView(R.id.content_view) RelativeLayout content_view;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.btn_reto)
+    ImageButton btn_reto;
+    @BindView(R.id.btn_ranking)
+    ImageButton btn_ranking;
+    @BindView(R.id.btn_perfil)
+    ImageButton btn_perfil;
+    @BindView(R.id.content_view)
+    RelativeLayout content_view;
     final static String TAG_1 = "RETO";
     final static String TAG_2 = "RANKING";
     final static String TAG_3 = "PERFIL";
-    private DatabaseReference database;
+
+    ChallengesFragment challengesFragment;
+    RankingFragment rankingFragment;
+    ProfileFragment profileFragment;
 
 
     @Override
@@ -35,41 +43,44 @@ public class ChallengesActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reto);
         ButterKnife.bind(this);
-        database = FirebaseDatabase.getInstance().getReference();
-        getViews();
+        challengesFragment = new ChallengesFragment();
+        rankingFragment = new RankingFragment();
+        profileFragment = new ProfileFragment();
+
+        configViews();
     }
 
-    private void getViews(){
+    private void configViews() {
         mToolbar.setTitle(getResources().getString(R.string.title_challenge));
         setSupportActionBar(mToolbar);
-        changeToFragment( new ChallengesFragment() );
+        changeToFragment(challengesFragment);
         changeColorBarNotification(R.color.green_start_challenges);
     }
 
     @OnClick(R.id.btn_reto)
-    public void gotoReto(){
+    public void gotoReto() {
         mToolbar.setTitle(getResources().getString(R.string.title_challenge));
         active_btn(TAG_1);
-        changeToFragment( new ChallengesFragment() );
+        changeToFragment(challengesFragment);
     }
 
     @OnClick(R.id.btn_ranking)
-    public void gotoRanking(){
+    public void gotoRanking() {
         mToolbar.setTitle(getResources().getString(R.string.title_ranking));
         active_btn(TAG_2);
-        changeToFragment( new RankingFragment() );
+        changeToFragment(rankingFragment);
     }
 
     @OnClick(R.id.btn_perfil)
-    public void gotoPerfil(){
+    public void gotoPerfil() {
         mToolbar.setTitle(getResources().getString(R.string.title_profile));
         active_btn(TAG_3);
-        changeToFragment( new ProfileFragment() );
+        changeToFragment(profileFragment);
 
     }
 
-    private void active_btn(String tag){
-        switch (tag){
+    private void active_btn(String tag) {
+        switch (tag) {
             case TAG_1:
                 content_view.setBackground(ContextCompat.getDrawable(this, R.drawable.gradient_green));
                 changeColorBarNotification(R.color.green_start_challenges);
@@ -95,7 +106,5 @@ public class ChallengesActivity extends BaseActivity {
         }
     }
 
-    public DatabaseReference getDatabase() {
-        return database;
-    }
+
 }

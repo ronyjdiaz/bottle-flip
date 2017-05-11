@@ -3,7 +3,6 @@ package com.slashmobility.bottleflip_android.activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +12,6 @@ import android.widget.EditText;
 
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.utils.BaseUtils;
-
-import java.io.File;
-
 
 /**
  * @author Rony Diaz
@@ -107,7 +103,7 @@ public class BaseActivity extends AppCompatActivity {
         this.startActivity(myIntent);
     }
 
-    public void changeColorBarNotification(int color){
+    public void changeColorBarNotification(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -117,9 +113,9 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void changeToFragment(Fragment fragment) {
-        if(fragment!=null){
-           android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container,fragment);
+        if (fragment != null) {
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
         }
     }

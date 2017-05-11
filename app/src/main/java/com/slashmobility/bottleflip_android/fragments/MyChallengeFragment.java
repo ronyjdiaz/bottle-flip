@@ -23,7 +23,7 @@ public class MyChallengeFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    public static MyChallengeFragment newInstance(int positionChallenge){
+    public static MyChallengeFragment newInstance(int positionChallenge) {
         MyChallengeFragment myChallengeFragment = new MyChallengeFragment();
         myChallengeFragment.mpositionChallenge = positionChallenge;
         return myChallengeFragment;
@@ -35,7 +35,7 @@ public class MyChallengeFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_my_challenge, container, false);
-        ButterKnife.bind(this,v);
+        ButterKnife.bind(this, v);
         return v;
     }
 

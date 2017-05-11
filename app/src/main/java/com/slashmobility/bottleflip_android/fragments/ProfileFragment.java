@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.slashmobility.bottleflip_android.Constants;
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.activities.ChallengesActivity;
 import com.slashmobility.bottleflip_android.activities.LinkBottleActivity;
-import com.slashmobility.bottleflip_android.activities.LoginActivity;
 import com.slashmobility.bottleflip_android.activities.OnboardingActivity;
 import com.slashmobility.bottleflip_android.activities.WelcomeActivity;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
@@ -25,17 +25,24 @@ import butterknife.OnClick;
 
 public class ProfileFragment extends BaseFragment {
 
-    @BindView(R.id.layoutLogout) LinearLayout layoutLogout;
-    @BindView(R.id.layoutTermsAndConditions) LinearLayout layoutTermsAndConditions;
-    @BindView(R.id.layoutHelp) LinearLayout layoutHelp;
-    @BindView(R.id.layoutShare) LinearLayout layoutShare;
-    @BindView(R.id.layoutPrivacyPolicy) LinearLayout layoutPrivacyPolicy;
-    @BindView(R.id.layoutSetBottleCode) LinearLayout layoutSetBottleCode;
+    @BindView(R.id.layoutLogout)
+    LinearLayout layoutLogout;
+    @BindView(R.id.layoutTermsAndConditions)
+    LinearLayout layoutTermsAndConditions;
+    @BindView(R.id.layoutHelp)
+    LinearLayout layoutHelp;
+    @BindView(R.id.layoutShare)
+    LinearLayout layoutShare;
+    @BindView(R.id.layoutPrivacyPolicy)
+    LinearLayout layoutPrivacyPolicy;
+    @BindView(R.id.layoutSetBottleCode)
+    LinearLayout layoutSetBottleCode;
 
 
     private View mView;
 
-    public ProfileFragment() {}
+    public ProfileFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,48 +54,48 @@ public class ProfileFragment extends BaseFragment {
     }
 
 
-    private void configViews(){
-        if(!SingletonSession.getInstance().getBottleCode().equals("")){
+    private void configViews() {
+        if (!SingletonSession.getInstance().getBottleCode().equals("")) {
             layoutSetBottleCode.setEnabled(false);
             layoutSetBottleCode.setClickable(false);
-            layoutSetBottleCode.getBackground().setAlpha(128);
+            layoutSetBottleCode.getBackground().setAlpha(Constants.ALPHA50);
         }
 
     }
 
     @OnClick(R.id.layoutLogout)
-    protected void logout(){
+    protected void logout() {
         Intent intent = new Intent(getActivity(), WelcomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
     @OnClick(R.id.layoutHelp)
-    protected void gotoHelp(){
+    protected void gotoHelp() {
         Bundle bundle = new Bundle();
-        bundle.putBoolean("isHelp", true);
-        ((ChallengesActivity)getActivity()).openActivity(OnboardingActivity.class, bundle);
+        bundle.putBoolean(Constants.ISHELP, true);
+        ((ChallengesActivity) getActivity()).openActivity(OnboardingActivity.class, bundle);
     }
 
     @OnClick(R.id.layoutShare)
-    protected void shareApp(){
+    protected void shareApp() {
         try {
             Intent i = new Intent(android.content.Intent.ACTION_SEND);
             i.setType("text/plain");
             i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-            String sAux = "\nLet me recommend you this application\n\n";
-            sAux = sAux + "https://play.google.com/store/apps/details?id=com.flaregames.nskchuck \n\n";
+            String sAux = getString(R.string.share_recomendation);
+            sAux = sAux + "\n" + Constants.LINK_APP;
             i.putExtra(Intent.EXTRA_TEXT, sAux);
-            startActivity(Intent.createChooser(i, "choose one"));
-        } catch(Exception e) {
+            startActivity(Intent.createChooser(i, getString(R.string.choose_one)));
+        } catch (Exception e) {
             //e.toString();
         }
     }
 
     @OnClick(R.id.layoutSetBottleCode)
-    protected void linkCode(){
-        if(SingletonSession.getInstance().getBottleCode().equals("")){
-            ((ChallengesActivity)getActivity()).openActivity(LinkBottleActivity.class);
+    protected void linkCode() {
+        if (SingletonSession.getInstance().getBottleCode().equals("")) {
+            ((ChallengesActivity) getActivity()).openActivity(LinkBottleActivity.class);
         }
 
 

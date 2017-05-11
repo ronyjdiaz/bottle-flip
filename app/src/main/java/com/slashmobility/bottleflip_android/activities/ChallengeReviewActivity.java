@@ -21,11 +21,15 @@ import butterknife.ButterKnife;
 
 public class ChallengeReviewActivity extends BaseActivity {
 
-    @BindView(R.id.frame_pager)ViewPager viewpagerContainer;
-    @BindView(R.id.frame_tabs)TabLayout tabLayout;
+    @BindView(R.id.frame_pager)
+    ViewPager viewpagerContainer;
+    @BindView(R.id.frame_tabs)
+    TabLayout tabLayout;
 
-    @BindView(R.id.toolbar)    Toolbar mToolbar;
-    @BindView(R.id.toolbarTitle)TextView mtoolbarTitle;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.toolbarTitle)
+    TextView mtoolbarTitle;
 
 
     @Override
@@ -41,19 +45,19 @@ public class ChallengeReviewActivity extends BaseActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        Bundle bundle =  getIntent().getExtras();
-        int mpositionChallenge = bundle.getInt("positionChallenge",-1);
-        ChallengeReviewActivity.ViewPagerAdapter adapter = new ChallengeReviewActivity.ViewPagerAdapter(   getSupportFragmentManager());
+        Bundle bundle = getIntent().getExtras();
+        int mpositionChallenge = bundle.getInt("positionChallenge", -1);
+        ChallengeReviewActivity.ViewPagerAdapter adapter = new ChallengeReviewActivity.ViewPagerAdapter(getSupportFragmentManager());
         //adapter.addFragment(ReviewTutorialFragment.newInstance(mpositionChallenge),getString(R.string.tutorial));
-        adapter.addFragment(MyChallengeFragment.newInstance(mpositionChallenge),getString(R.string.my_challenge));
-        adapter.addFragment(ReviewTutorialFragment.newInstance(mpositionChallenge),getString(R.string.tutorial));
+        adapter.addFragment(MyChallengeFragment.newInstance(mpositionChallenge), getString(R.string.my_challenge));
+        adapter.addFragment(ReviewTutorialFragment.newInstance(mpositionChallenge), getString(R.string.tutorial));
         viewPager.setAdapter(adapter);
        /* adapter.addFragment(LoanListFragment.newInstance(getApi().getUser().getActiveLoans(), R.layout.item_loan_active_list), getString(R.string.tab_active_loan_text) + " (" + getApi().getUser().getActiveLoans().size() + ")");
         adapter.addFragment(LoanListFragment.newInstance(getApi().getUser().getHistoricLoans(), R.layout.item_loan_list_history), getString(R.string.tab_history_text) + " (" + getApi().getUser().getHistoricLoans().size() + ")");
        */
     }
 
-    private void configViews(){
+    private void configViews() {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
