@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.slashmobility.bottleflip_android.R;
 import com.slashmobility.bottleflip_android.activities.LinkBottleActivity;
+import com.slashmobility.bottleflip_android.services.ServiceManager;
+import com.slashmobility.bottleflip_android.services.callbacks.CallbackBoolean;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 import com.slashmobility.bottleflip_android.utils.Utils;
 
@@ -70,16 +72,52 @@ public class LinkCodeFragment extends BaseFragment {
     @OnClick(R.id.btnContinue)
     protected void continueClick() {
 
-        if (TextUtils.isEmpty(medittextBottleCode.getText()) == false) {
-            SingletonSession.getInstance().setBottleCode(medittextBottleCode.getText().toString());
-            changeToFragment(new LinkUserCodeFragment());
-
-        } else {
+        if (TextUtils.isEmpty(medittextBottleCode.getText().toString())) {
             showMessageDialog(getResources().getString(R.string.bottle_code_required));
             return;
+        } else {
+            showProgressDialog(false);
+
+            ServiceManager.validateBottleCode(medittextBottleCode.getText().toString(), new CallbackBoolean() {
+                @Override
+                public void onSuccess(Boolean result) {
+                    hideProgressDialog();
+                    if (result) {
+                        SingletonSession.getInstance().setBottleCode(medittextBottleCode.getText().toString());
+                        if(SingletonSession.getInstance().getUser()!=null) {
+                            SingletonSession.getInstance().getUser().setBottleCode(medittextBottleCode.getText().toString());
+                            ServiceManager.updateUser(SingletonSession.getInstance().getUser(), new CallbackBoolean() {
+                                @Override
+                                public void onSuccess(Boolean result) {
+
+                                }
+
+                                @Override
+                                public void onError(int errorCode, String errorMessage) {
+
+                                }
+                            });
+                        }
+                        else
+                        {
+                            changeToFragment(new LinkUserCodeFragment());
+                        }
+
+                    }
+                    else {
+                        showMessageDialog(getResources().getString(R.string.bottle_code_invalid));
+                    }
+
+                }
+
+                @Override
+                public void onError(int errorCode, String errorMessage) {
+                    hideProgressDialog();
+                }
+            });
+
+
         }
-
-
     }
 
     @OnClick(R.id.imageviewBackButton)

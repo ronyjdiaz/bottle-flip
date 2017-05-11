@@ -35,6 +35,7 @@
     <string name="pass_required">Contraseña es requerida</string>
     <string name="username_required">El nombre de usuario es requerido</string>
     <string name="recover_password">RECUPERAR CONTRASEÑA</string>
+    <string name="user_not_exist">El usuario no existe</string>
 
     <!---Register-->
     <string name="complete_your_account">COMPLETA TU CUENTA</string>
@@ -60,7 +61,8 @@
     <string name="text_uncode">Continuar sin código</string>
     <string name="error_register">Ha ocurrido un error durante el registro, por favor intente nuevamente.</string>
     <string name="bottle_code_invalid">El código de la botella es inválido</string>
-    <string name="fail_authentication">Ha ocurrido un error en la autenticación</string>
+    <string name="error_authentication">Ha ocurrido un error en la autenticación</string>
+    <string name="fail_authentication">Usuario o contraseña inválida</string>
     <string name="registering">Registrando...</string>
 
 

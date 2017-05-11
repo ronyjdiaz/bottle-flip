@@ -26,6 +26,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.slashmobility.bottleflip_android.Constants;
 import com.slashmobility.bottleflip_android.R;
+import com.slashmobility.bottleflip_android.model.User;
+import com.slashmobility.bottleflip_android.services.ServiceManager;
+import com.slashmobility.bottleflip_android.services.callbacks.CallbackUser;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 import com.slashmobility.bottleflip_android.utils.Utils;
 
@@ -55,6 +58,7 @@ public class LoginActivity extends BaseActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    FirebaseUser firebaseUser;
     private static final String TAG = "LoginActivity";
 
     @Override
@@ -68,6 +72,7 @@ public class LoginActivity extends BaseActivity {
         callbackManager = CallbackManager.Factory.create();
         // FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
+        SingletonSession.getInstance().setBottleCode("");
         configViews();
         initListeners();
 
@@ -101,10 +106,10 @@ public class LoginActivity extends BaseActivity {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
+                firebaseUser = firebaseAuth.getCurrentUser();
+                if (firebaseUser != null) {
                     // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + firebaseUser.getUid());
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -173,8 +178,47 @@ public class LoginActivity extends BaseActivity {
             Utils.hideSoftKeyboard(LoginActivity.this);
             String mEmail = medittextUsername.getText().toString();
             String mPassword = medittextPassword.getText().toString();
-            SingletonSession.getInstance().setBottleCode("TempCode");
-            openActivity(ChallengesActivity.class);
+            showProgressDialog(false);
+
+            mAuth.signInWithEmailAndPassword(mEmail, mPassword)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+
+                            if (task.isSuccessful()) {
+
+                                ServiceManager.getUser(firebaseUser.getUid(), new CallbackUser() {
+                                    @Override
+                                    public void onSuccess(User user) {
+
+                                        if(user!=null)
+                                        {
+                                            SingletonSession.getInstance().setUser(user);
+                                            openActivity(ChallengesActivity.class);
+                                        }
+                                        else{
+                                            Toast.makeText(LoginActivity.this, R.string.user_not_exist,Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onError(int errorCode, String errorMessage) {
+                                        Toast.makeText(LoginActivity.this, R.string.fail_authentication,Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+                                hideProgressDialog();
+
+                            }
+                            else{
+                                Log.w(TAG, "signInWithEmail:failed", task.getException());
+                                Toast.makeText(LoginActivity.this, R.string.fail_authentication,Toast.LENGTH_SHORT).show();
+                                hideProgressDialog();
+                            }
+
+                        }
+                    });
         }
     }
 
@@ -210,7 +254,7 @@ public class LoginActivity extends BaseActivity {
                         Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(LoginActivity.this, R.string.fail_authentication,
+                            Toast.makeText(LoginActivity.this, R.string.error_authentication,
                                     Toast.LENGTH_SHORT).show();
                             return;
                         }

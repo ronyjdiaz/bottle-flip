@@ -6,9 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.NotificationCompatSideChannelService;
+import android.support.v4.content.FileProvider;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.TextView;
@@ -50,6 +53,7 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
     TextView mtextviewInstructionsChallenge;
     private static final int VIDEO_CAPTURE = 101;
     private String mCurrentVideoPath;
+    MultiplePermissionsReport reportPermissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +79,15 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
                         Manifest.permission.READ_EXTERNAL_STORAGE
                 ).withListener(new MultiplePermissionsListener() {
             @Override
-            public void onPermissionsChecked(MultiplePermissionsReport report) {/* ... */}
+            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                reportPermissions = report;
+            }
 
             @Override
-            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
+            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                token.continuePermissionRequest();
+
+            }
         }).check();
 
     }
@@ -128,16 +137,36 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
 
     @OnClick(R.id.btnAccept)
     protected void doChallenge() {
-        if (!SingletonSession.getInstance().getBottleCode().equals("")) {
+        if (SingletonSession.getInstance().getUser()!=null && SingletonSession.getInstance().getUser().getBottleCode().equals("") == false) {
             if (hasCamera()) {
 
-                File mediaFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                        + Constants.DCIM + getAlbumName() + "/" + Constants.VIDEO_NAME);
-                mCurrentVideoPath = "file://" + mediaFile.getAbsolutePath();
-                Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                Uri videoUri = Uri.fromFile(mediaFile);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, videoUri);
-                startActivityForResult(intent, VIDEO_CAPTURE);
+                if(reportPermissions.areAllPermissionsGranted()){
+                    File mediaFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+                            + Constants.DCIM + getAlbumName() + "/" + Constants.VIDEO_NAME);
+                    Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                    Uri videoUri;
+                    if(Build.VERSION.SDK_INT >=  Build.VERSION_CODES.N){
+                        mCurrentVideoPath = "content://" + mediaFile.getAbsolutePath();
+                        videoUri =   FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider",mediaFile);
+
+                    }
+                    else{
+                        mCurrentVideoPath = "file://" + mediaFile.getAbsolutePath();
+                        videoUri = Uri.fromFile(mediaFile);
+                    }
+
+
+
+
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, videoUri);
+                    startActivityForResult(intent, VIDEO_CAPTURE);
+                }
+                else
+                {
+                    configPermissions();
+                }
+
+
 
             } else {
                 showMessageDialog(getString(R.string.no_camera));
@@ -163,9 +192,9 @@ public class ChallengeDetailActivity extends BaseActivity implements YouTubePlay
     }
 
     private boolean hasCamera() {
-        if (getPackageManager().hasSystemFeature(
-                PackageManager.FEATURE_CAMERA_ANY)) {
-            return true;
+        if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+
+                return true;
         } else {
             return false;
         }

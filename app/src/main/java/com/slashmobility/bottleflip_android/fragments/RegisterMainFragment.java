@@ -76,15 +76,16 @@ public class RegisterMainFragment extends BaseFragment {
 
     @OnClick(R.id.btnContinue)
     protected void continueCode() {
-
         if (TextUtils.isEmpty(medittextBottleCode.getText().toString())) {
             showMessageDialog(getResources().getString(R.string.bottle_code_required));
             return;
         } else {
+            showProgressDialog(false);
 
             ServiceManager.validateBottleCode(medittextBottleCode.getText().toString(), new CallbackBoolean() {
                 @Override
                 public void onSuccess(Boolean result) {
+                    hideProgressDialog();
                     if (result) {
                         SingletonSession.getInstance().setBottleCode(medittextBottleCode.getText().toString());
                         changeToFragment(new RegisterOptionsFragment());
@@ -96,7 +97,7 @@ public class RegisterMainFragment extends BaseFragment {
 
                 @Override
                 public void onError(int errorCode, String errorMessage) {
-
+                    hideProgressDialog();
                 }
             });
 

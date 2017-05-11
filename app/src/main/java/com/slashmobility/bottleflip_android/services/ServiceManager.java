@@ -16,6 +16,7 @@ import com.slashmobility.bottleflip_android.model.User;
 import com.slashmobility.bottleflip_android.services.callbacks.CallbackBoolean;
 import com.slashmobility.bottleflip_android.services.callbacks.CallbackChallenge;
 import com.slashmobility.bottleflip_android.services.callbacks.CallbackRanking;
+import com.slashmobility.bottleflip_android.services.callbacks.CallbackUser;
 import com.slashmobility.bottleflip_android.singleton.SingletonSession;
 
 import java.util.ArrayList;
@@ -86,6 +87,32 @@ public class ServiceManager {
         callbackBoolean.onSuccess(true);
     }
 
+    public static void updateUser(User userObject, final CallbackBoolean callbackBoolean) {
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        //DatabaseReference usersRef  = database.child("users").orderByChild("userID").equalTo(userObject.getUserID()).getRef();
+
+        //Map<String, User> users = new HashMap<String, User>();
+        database.child("users").orderByChild("userID").equalTo(userObject.getUserID()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot codeDaSnapshot : dataSnapshot.getChildren()) {
+                    if (codeDaSnapshot.exists()) {
+
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
     public static void validateBottleCode(String code, final CallbackBoolean callbackBoolean) {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
@@ -112,7 +139,35 @@ public class ServiceManager {
             }
 
         });
-
-
     }
+
+    public static void getUser(String userID, final CallbackUser callbackUser){
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+
+        database.child("users").orderByChild("userID").equalTo(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot codeDaSnapshot : dataSnapshot.getChildren()) {
+                    if (codeDaSnapshot.exists()) {
+                        User user =  new User((Map<String, String>) codeDaSnapshot.getValue()) ;
+                        callbackUser.onSuccess(user);
+                        return;
+                    }
+                }
+                callbackUser.onSuccess(null);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callbackUser.onError(1, "Connection failed, please try again");
+            }
+
+        });
+    }
+
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.slashmobility.bottleflip_android.singleton;
 
 import com.slashmobility.bottleflip_android.model.Challenge;
+import com.slashmobility.bottleflip_android.model.User;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class SingletonSession {
     private String videoUri;
     ArrayList<Challenge> challenges;
     private int score = 30;
+    User user;
 
 
     //no outer class can initialize this class's object
@@ -65,5 +67,13 @@ public class SingletonSession {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

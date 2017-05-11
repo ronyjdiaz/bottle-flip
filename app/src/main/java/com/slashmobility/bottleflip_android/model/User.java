@@ -1,5 +1,8 @@
 package com.slashmobility.bottleflip_android.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Rony on 10/5/2017.
  */
@@ -17,6 +20,20 @@ public class User {
 
     public User() {
     }
+
+    public User(Map<String, String> map) {
+        this.accessToken = map.get("accessToken");
+        this.bottleCode = map.get("bottleCode");
+        this.created =  map.get("created");
+        this.displayName =  map.get("displayName");
+        this.email =  map.get("email");
+        this.fcmDeviceToken =  map.get("fcmDeviceToken");
+        this.providerID =  map.get("providerID");
+        this.userID =  map.get("userID");
+        this.userName =  map.get("userName");
+
+    }
+
 
     public User(String accessToken, String bottleCode, String created, String displayName, String email, String fcmDeviceToken, String providerID, String userID, String userName) {
         this.accessToken = accessToken;
@@ -39,6 +56,9 @@ public class User {
     }
 
     public String getBottleCode() {
+        if(bottleCode == null)
+            bottleCode =  "";
+
         return bottleCode;
     }
 
